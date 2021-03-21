@@ -1,0 +1,861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\TH.NUCE.Web\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\TH.NUCE.Web\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\TH.NUCE.Web\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\TH.NUCE.Web\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{750FC336-142C-43B4-AF05-8FE7C85C906E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>nuce.web.khaosatcuusinhvien</RootNamespace>
+    <AssemblyName>nuce.web.khaosatcuusinhvien</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GemBox.Document">
+      <HintPath>..\GemBox.Document.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet">
+      <HintPath>..\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.bootstrap">
+      <HintPath>..\TH.NUCE.Web\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\TH.NUCE.Web\packages\AspNet.ScriptManager.jQuery.1.10.2\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\TH.NUCE.Web\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\TH.NUCE.Web\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\TH.NUCE.Web\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\TH.NUCE.Web\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\KhaoSat\CauTrucDe.aspx" />
+    <Content Include="Admin\KhaoSat\NoiDungDe.aspx" />
+    <Content Include="Admin\KhaoSat\DanhSachDeKhaoSat.aspx" />
+    <Content Include="Admin\KhaoSat\DanhSachDapAn.aspx" />
+    <Content Include="Admin\KhaoSat\SuaDapAn.aspx" />
+    <Content Include="Admin\KhaoSat\SuaCauHoi.aspx" />
+    <Content Include="Admin\KhaoSat\DanhSachCauHoi.aspx" />
+    <Content Include="Admin\KhaoSat\DotKhaoSat.aspx" />
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\login.aspx" />
+    <Content Include="CANBO\Admin_CuuSinhVien_TK.aspx" />
+    <Content Include="CANBO\CuuSinhVien.aspx" />
+    <Content Include="CANBO\SinhVienTruocKhiTotNghiep.aspx" />
+    <Content Include="CANBO\canbo_doimatkhau.aspx" />
+    <Content Include="DGGV_Mau_do_an.html" />
+    <Content Include="DGGV_Mau_thuc_hanh.html" />
+    <Content Include="DGGV_Mau_Ly_Thuyet_thuc_hanh.html" />
+    <Content Include="ExportDoc.aspx" />
+    <Content Include="Ex\HtmlPage1.html" />
+    <Content Include="KhaoSat\Default.aspx" />
+    <Content Include="KSHDGD\AD\DeThi.aspx" />
+    <Content Include="KSHDGD\AD\DeThiViewFull.aspx" />
+    <Content Include="KSHDGD\AD\tong_hop_ket_qua.aspx" />
+    <Content Include="KSHDGD\danhSach_BaiKhaoSat_SinhVien.aspx" />
+    <Content Include="KSHDGD\khaoSatHoatDongGiangDay.aspx" />
+    <Content Include="Khao_sat_cuu_sinh_vien.aspx" />
+    <Content Include="Khao_sat_sinh_vien_sap_ra_truong_xacthucemail.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="khao_sat_sinh_vien_sap_ra_truong_suathongtin.aspx" />
+    <Content Include="Khao_sat_sinh_vien_sap_ra_truong.aspx" />
+    <Content Include="Khao_sat_sinh_vien_sap_ra_truong_luu_bai.aspx" />
+    <Content Include="Khao_sat_sinh_vien_sap_ra_truong_tong_hop_ket_qua.aspx" />
+    <Content Include="Khao_sat_cuu_sinh_vien_tong_hop_ket_qua.aspx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="KSHDGD\Khao_sat_sinh_vien_m4.aspx" />
+    <Content Include="KSHDGD\Khao_sat_sinh_vien.aspx" />
+    <Content Include="KSHDGD\Khao_sat_sinh_vien_luu_bai.aspx" />
+    <Content Include="KSHDGD\Khao_sat_sinh_vien_tong_hop_ket_qua.aspx" />
+    <Content Include="KSHDGD\login_sinh_vien.aspx" />
+    <Content Include="login_sinh_vien_sap_ra_truong.aspx" />
+    <Content Include="login_sinh_vien_sap_ra_truong1.aspx" />
+    <Content Include="PhanHoi\LE\AddMessage.aspx" />
+    <Content Include="PhanHoi\LE\EditMessage.aspx" />
+    <Content Include="PhanHoi\LE\Message.aspx" />
+    <Content Include="PhanHoi\LE\NotRead.aspx" />
+    <Content Include="PhanHoi\LE\ViewMessage.aspx" />
+    <Content Include="PhanHoi\ST\ViewMessage.aspx" />
+    <Content Include="PhanHoi\ST\Message.aspx" />
+    <Content Include="PhanHoi\ST\NotRead.aspx" />
+    <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Khao_sat_cuu_sinh_vien2016.aspx" />
+    <Content Include="DGGV_Mau_Ly_Thuyet.html" />
+    <Content Include="khao_sat_cuu_sinh_vien_luu_bai.aspx" />
+    <Content Include="khao_sat_cuu_sinh_vien_suathongtin.aspx" />
+    <Content Include="CANBO\Default.aspx" />
+    <Content Include="login_can_bo.aspx" />
+    <Content Include="login_cuu_sinh_vien.aspx" />
+    <Content Include="PhanHoi\Default.aspx" />
+    <Content Include="PhanHoi\LE\Classroom.aspx" />
+    <Content Include="PhanHoi\LE\Default.aspx" />
+    <Content Include="PhanHoi\LE\ViewFeedBack.aspx" />
+    <Content Include="PhanHoi\LE\EditFeedBack.aspx" />
+    <Content Include="PhanHoi\LE\login.aspx" />
+    <Content Include="PhanHoi\ST\verify_email.aspx" />
+    <Content Include="PhanHoi\ST\ViewFeedBack.aspx" />
+    <Content Include="PhanHoi\ST\EditFeedBack.aspx" />
+    <Content Include="PhanHoi\ST\EditInfo.aspx" />
+    <Content Include="PhanHoi\ST\AddFeedBack.aspx" />
+    <Content Include="PhanHoi\ST\Default.aspx" />
+    <Content Include="PhanHoi\ST\Login.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Site.Master" />
+    <Content Include="Ex\D2.aspx" />
+    <Content Include="Ex\D1.aspx" />
+    <Content Include="Ex\D3.aspx" />
+    <Content Include="ViewSwitcher.ascx" />
+    <None Include="Web References\Services\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Services\Service.disco" />
+    <None Include="Web References\services_direct\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\services_direct\service.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Site.Mobile.Master" />
+    <None Include="Web References\Services\Service.wsdl" />
+    <None Include="Web References\services_direct\service.wsdl" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\KhaoSat\CauTrucDe.aspx.cs">
+      <DependentUpon>CauTrucDe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\CauTrucDe.aspx.designer.cs">
+      <DependentUpon>CauTrucDe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\NoiDungDe.aspx.cs">
+      <DependentUpon>NoiDungDe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\NoiDungDe.aspx.designer.cs">
+      <DependentUpon>NoiDungDe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DanhSachDeKhaoSat.aspx.cs">
+      <DependentUpon>DanhSachDeKhaoSat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DanhSachDeKhaoSat.aspx.designer.cs">
+      <DependentUpon>DanhSachDeKhaoSat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DanhSachDapAn.aspx.cs">
+      <DependentUpon>DanhSachDapAn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DanhSachDapAn.aspx.designer.cs">
+      <DependentUpon>DanhSachDapAn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\SuaDapAn.aspx.cs">
+      <DependentUpon>SuaDapAn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\SuaDapAn.aspx.designer.cs">
+      <DependentUpon>SuaDapAn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\SuaCauHoi.aspx.cs">
+      <DependentUpon>SuaCauHoi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\SuaCauHoi.aspx.designer.cs">
+      <DependentUpon>SuaCauHoi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DanhSachCauHoi.aspx.cs">
+      <DependentUpon>DanhSachCauHoi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DanhSachCauHoi.aspx.designer.cs">
+      <DependentUpon>DanhSachCauHoi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DotKhaoSat.aspx.cs">
+      <DependentUpon>DotKhaoSat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\KhaoSat\DotKhaoSat.aspx.designer.cs">
+      <DependentUpon>DotKhaoSat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="CANBO\Admin_CuuSinhVien_TK.aspx.cs">
+      <DependentUpon>Admin_CuuSinhVien_TK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CANBO\Admin_CuuSinhVien_TK.aspx.designer.cs">
+      <DependentUpon>Admin_CuuSinhVien_TK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CANBO\CuuSinhVien.aspx.cs">
+      <DependentUpon>CuuSinhVien.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CANBO\CuuSinhVien.aspx.designer.cs">
+      <DependentUpon>CuuSinhVien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CANBO\SinhVienTruocKhiTotNghiep.aspx.cs">
+      <DependentUpon>SinhVienTruocKhiTotNghiep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CANBO\SinhVienTruocKhiTotNghiep.aspx.designer.cs">
+      <DependentUpon>SinhVienTruocKhiTotNghiep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CANBO\canbo_doimatkhau.aspx.cs">
+      <DependentUpon>canbo_doimatkhau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CANBO\canbo_doimatkhau.aspx.designer.cs">
+      <DependentUpon>canbo_doimatkhau.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExportDoc.aspx.cs">
+      <DependentUpon>ExportDoc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportDoc.aspx.designer.cs">
+      <DependentUpon>ExportDoc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExtentLib\UtilLocal.cs" />
+    <Compile Include="KhaoSat\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KhaoSat\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\AD\DeThi.aspx.cs">
+      <DependentUpon>DeThi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\AD\DeThi.aspx.designer.cs">
+      <DependentUpon>DeThi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\AD\DeThiViewFull.aspx.cs">
+      <DependentUpon>DeThiViewFull.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\AD\DeThiViewFull.aspx.designer.cs">
+      <DependentUpon>DeThiViewFull.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\AD\tong_hop_ket_qua.aspx.cs">
+      <DependentUpon>tong_hop_ket_qua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\AD\tong_hop_ket_qua.aspx.designer.cs">
+      <DependentUpon>tong_hop_ket_qua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\danhSach_BaiKhaoSat_SinhVien.aspx.cs">
+      <DependentUpon>danhSach_BaiKhaoSat_SinhVien.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\danhSach_BaiKhaoSat_SinhVien.aspx.designer.cs">
+      <DependentUpon>danhSach_BaiKhaoSat_SinhVien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\khaoSatHoatDongGiangDay.aspx.cs">
+      <DependentUpon>khaoSatHoatDongGiangDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\khaoSatHoatDongGiangDay.aspx.designer.cs">
+      <DependentUpon>khaoSatHoatDongGiangDay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_cuu_sinh_vien.aspx.cs">
+      <DependentUpon>Khao_sat_cuu_sinh_vien.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_cuu_sinh_vien.aspx.designer.cs">
+      <DependentUpon>Khao_sat_cuu_sinh_vien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong_xacthucemail.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong_xacthucemail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong_xacthucemail.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong_xacthucemail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="khao_sat_sinh_vien_sap_ra_truong_suathongtin.aspx.cs">
+      <DependentUpon>khao_sat_sinh_vien_sap_ra_truong_suathongtin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="khao_sat_sinh_vien_sap_ra_truong_suathongtin.aspx.designer.cs">
+      <DependentUpon>khao_sat_sinh_vien_sap_ra_truong_suathongtin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong_luu_bai.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong_luu_bai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong_luu_bai.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong_luu_bai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong_tong_hop_ket_qua.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong_tong_hop_ket_qua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_sinh_vien_sap_ra_truong_tong_hop_ket_qua.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_sap_ra_truong_tong_hop_ket_qua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_cuu_sinh_vien_tong_hop_ket_qua.aspx.cs">
+      <DependentUpon>Khao_sat_cuu_sinh_vien_tong_hop_ket_qua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_cuu_sinh_vien_tong_hop_ket_qua.aspx.designer.cs">
+      <DependentUpon>Khao_sat_cuu_sinh_vien_tong_hop_ket_qua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CANBO\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CANBO\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien_m4.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_m4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien_m4.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_m4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien_luu_bai.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_luu_bai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien_luu_bai.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_luu_bai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien_tong_hop_ket_qua.aspx.cs">
+      <DependentUpon>Khao_sat_sinh_vien_tong_hop_ket_qua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\Khao_sat_sinh_vien_tong_hop_ket_qua.aspx.designer.cs">
+      <DependentUpon>Khao_sat_sinh_vien_tong_hop_ket_qua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KSHDGD\login_sinh_vien.aspx.cs">
+      <DependentUpon>login_sinh_vien.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KSHDGD\login_sinh_vien.aspx.designer.cs">
+      <DependentUpon>login_sinh_vien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_can_bo.aspx.cs">
+      <DependentUpon>login_can_bo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_can_bo.aspx.designer.cs">
+      <DependentUpon>login_can_bo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_sinh_vien_sap_ra_truong.aspx.cs">
+      <DependentUpon>login_sinh_vien_sap_ra_truong.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_sinh_vien_sap_ra_truong.aspx.designer.cs">
+      <DependentUpon>login_sinh_vien_sap_ra_truong.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_sinh_vien_sap_ra_truong1.aspx.cs">
+      <DependentUpon>login_sinh_vien_sap_ra_truong1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_sinh_vien_sap_ra_truong1.aspx.designer.cs">
+      <DependentUpon>login_sinh_vien_sap_ra_truong1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Khao_sat_cuu_sinh_vien2016.aspx.cs">
+      <DependentUpon>Khao_sat_cuu_sinh_vien2016.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Khao_sat_cuu_sinh_vien2016.aspx.designer.cs">
+      <DependentUpon>Khao_sat_cuu_sinh_vien2016.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="khao_sat_cuu_sinh_vien_luu_bai.aspx.cs">
+      <DependentUpon>khao_sat_cuu_sinh_vien_luu_bai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="khao_sat_cuu_sinh_vien_luu_bai.aspx.designer.cs">
+      <DependentUpon>khao_sat_cuu_sinh_vien_luu_bai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="khao_sat_cuu_sinh_vien_suathongtin.aspx.cs">
+      <DependentUpon>khao_sat_cuu_sinh_vien_suathongtin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="khao_sat_cuu_sinh_vien_suathongtin.aspx.designer.cs">
+      <DependentUpon>khao_sat_cuu_sinh_vien_suathongtin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_cuu_sinh_vien.aspx.cs">
+      <DependentUpon>login_cuu_sinh_vien.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_cuu_sinh_vien.aspx.designer.cs">
+      <DependentUpon>login_cuu_sinh_vien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\AddMessage.aspx.cs">
+      <DependentUpon>AddMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\AddMessage.aspx.designer.cs">
+      <DependentUpon>AddMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\EditMessage.aspx.cs">
+      <DependentUpon>EditMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\EditMessage.aspx.designer.cs">
+      <DependentUpon>EditMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\NotRead.aspx.cs">
+      <DependentUpon>NotRead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\NotRead.aspx.designer.cs">
+      <DependentUpon>NotRead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\ViewMessage.aspx.cs">
+      <DependentUpon>ViewMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\ViewMessage.aspx.designer.cs">
+      <DependentUpon>ViewMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\ViewMessage.aspx.cs">
+      <DependentUpon>ViewMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\ViewMessage.aspx.designer.cs">
+      <DependentUpon>ViewMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\NotRead.aspx.cs">
+      <DependentUpon>NotRead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\NotRead.aspx.designer.cs">
+      <DependentUpon>NotRead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\Classroom.aspx.cs">
+      <DependentUpon>Classroom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\Classroom.aspx.designer.cs">
+      <DependentUpon>Classroom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\ViewFeedBack.aspx.cs">
+      <DependentUpon>ViewFeedBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\ViewFeedBack.aspx.designer.cs">
+      <DependentUpon>ViewFeedBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\EditFeedBack.aspx.cs">
+      <DependentUpon>EditFeedBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\EditFeedBack.aspx.designer.cs">
+      <DependentUpon>EditFeedBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\LE\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\LE\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\verify_email.aspx.cs">
+      <DependentUpon>verify_email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\verify_email.aspx.designer.cs">
+      <DependentUpon>verify_email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\ViewFeedBack.aspx.cs">
+      <DependentUpon>ViewFeedBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\ViewFeedBack.aspx.designer.cs">
+      <DependentUpon>ViewFeedBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\EditFeedBack.aspx.cs">
+      <DependentUpon>EditFeedBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\EditFeedBack.aspx.designer.cs">
+      <DependentUpon>EditFeedBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\EditInfo.aspx.cs">
+      <DependentUpon>EditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\EditInfo.aspx.designer.cs">
+      <DependentUpon>EditInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\AddFeedBack.aspx.cs">
+      <DependentUpon>AddFeedBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\AddFeedBack.aspx.designer.cs">
+      <DependentUpon>AddFeedBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhanHoi\ST\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhanHoi\ST\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Ex\D2.aspx.cs">
+      <DependentUpon>D2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ex\D2.aspx.designer.cs">
+      <DependentUpon>D2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ex\D1.aspx.cs">
+      <DependentUpon>D1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ex\D1.aspx.designer.cs">
+      <DependentUpon>D1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ex\D3.aspx.cs">
+      <DependentUpon>D3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ex\D3.aspx.designer.cs">
+      <DependentUpon>D3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExtentLib\Utils.cs" />
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\Services\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\services_direct\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nuce.web.data\nuce.web.data.csproj">
+      <Project>{db63cf01-5efd-47fe-b7d7-09eb4ef7c462}</Project>
+      <Name>nuce.web.data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nuce.web.model\nuce.web.model.csproj">
+      <Project>{9eca50bf-5f67-48a5-8a42-3192e0a67417}</Project>
+      <Name>nuce.web.model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://14.177.64.71:8002/service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Services\</RelPath>
+      <UpdateFromURL>http://14.177.64.71:8002/service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>nuce_web_khaosatcuusinhvien_Services_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8003/service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\services_direct\</RelPath>
+      <UpdateFromURL>http://localhost:8003/service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>nuce_web_khaosatcuusinhvien_services_direct_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57399</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57399/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\TH.NUCE.Web\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\TH.NUCE.Web\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\TH.NUCE.Web\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\TH.NUCE.Web\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

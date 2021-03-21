@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9BC2C569-6AF6-4BDD-BA5D-6940A1E0C9D2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TH.NUCE.Web</RootNamespace>
+    <AssemblyName>TH.NUCE.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DNN.Modules.SecurityAnalyzer">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DNN.Modules.SecurityAnalyzer.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Authentication.Facebook">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Authentication.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Authentication.Google">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Authentication.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Authentication.LiveConnect">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Authentication.LiveConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Authentication.Twitter">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Authentication.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.HttpModules">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.HttpModules.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Instrumentation">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Log4Net">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.CoreMessaging">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.CoreMessaging.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.DigitalAssets">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.DigitalAssets.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Groups">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.Groups.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Html">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.HtmlEditorManager">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.HtmlEditorManager.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Journal">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.Journal.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.MemberDirectory">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.MemberDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.MobileManagement">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.MobileManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.PreviewProfileManagement">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.PreviewProfileManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.RazorHost">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.RazorHost.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Taxonomy">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.Taxonomy.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.UrlManagement">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Modules.UrlManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.RadEditorProvider">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.RadEditorProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Services.Syndication">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Services.Syndication.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Client">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Web.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.DDRMenu">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Web.DDRMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Razor">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebControls">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.WebControls.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\System32\inetsrv\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\MVC\THWeb\DLLDotnetnuke\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\MgmtCategoryInsertEx.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\MgmtCategoryListSettings.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\ProductInsert.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\ProductInsertSettings.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\images\calendar.png" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\VideoInsert.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\VideoInsertSettings.ascx" />
+    <Content Include="ExportExcel.aspx" />
+    <Content Include="Handler\Common\RequestServices\Config\Email.xml" />
+    <Content Include="Handler\Common\RequestServices\RequestServices_SendMail.aspx" />
+    <Content Include="Handler\Common\RequestServices\RequestServices_UpdateStatus.aspx" />
+    <Content Include="Handler\Common\RequestServices\RequestServices_GetListsWithPage.ashx" />
+    <Content Include="Handler\Services\GetServiceByCategories.ashx" />
+    <Content Include="Handler\Common\RequestServices\RequestServices_GetDetail.ashx" />
+    <Content Include="Handler\Admin\GetLogs.ashx" />
+    <Content Include="Handler\NEcommerce\SearchProducts.ashx" />
+    <Content Include="Handler\NEcommerce\SearchProducts1.ashx" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="controls\address.ascx" />
+    <Content Include="controls\DnnUrlControl.ascx" />
+    <Content Include="controls\duallistcontrol.ascx" />
+    <Content Include="controls\filepickeruploader.ascx" />
+    <Content Include="controls\help.ascx" />
+    <Content Include="controls\helpbuttoncontrol.ascx" />
+    <Content Include="controls\icon_help_32px.gif" />
+    <Content Include="controls\labelcontrol.ascx" />
+    <Content Include="controls\LocaleSelectorControl.ascx" />
+    <Content Include="controls\moduleauditcontrol.ascx" />
+    <Content Include="controls\sectionheadcontrol.ascx" />
+    <Content Include="controls\skincontrol.ascx" />
+    <Content Include="controls\skinthumbnailcontrol.ascx" />
+    <Content Include="controls\texteditor.ascx" />
+    <Content Include="controls\urlcontrol.ascx" />
+    <Content Include="controls\urltrackingcontrol.ascx" />
+    <Content Include="controls\user.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\ServiceInsert.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\ServiceInsertSettings.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\images\calendar.png" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\App_LocalResources\ImageInsert.ascx.resx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\App_LocalResources\ImageInsertSettings.ascx.resx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\ImageInsert.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\ImageInsertSettings.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\images\calendar.png" />
+    <Content Include="DesktopModules\TH.NUCE.Tags\View.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Utils\Configuration\ResetCache.txt" />
+    <Content Include="DesktopModules\TH.NUCE.HelloWord\View.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.Utils\View.ascx" />
+    <Content Include="DesktopModules\TH.NUCE.WatermarkPhoto\View.ascx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CategoryEx.cs" />
+    <Compile Include="CategoryExtProvider.cs" />
+    <Compile Include="CategoryProvider.cs" />
+    <Compile Include="Connection.Utils.cs" />
+    <Compile Include="CoreBase.cs" />
+    <Compile Include="CoreAdminAspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CoreHandlerEcommerce.cs" />
+    <Compile Include="CoreModule.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CoreModuleSettings.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CoreType.cs" />
+    <Compile Include="DataProcessingProvider.cs" />
+    <Compile Include="DataProcessingProvider_BatchString.cs" />
+    <Compile Include="DataProcessingProvider_Mix.cs" />
+    <Compile Include="DataProcessingProvider_RegularExpression.cs" />
+    <Compile Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\MgmtCategoryInsertEx.ascx.cs">
+      <DependentUpon>MgmtCategoryInsertEx.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\MgmtCategoryInsertEx.ascx.designer.cs">
+      <DependentUpon>MgmtCategoryInsertEx.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\MgmtCategoryListSettings.ascx.cs">
+      <DependentUpon>MgmtCategoryListSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\MgmtCategoryListSettings.ascx.designer.cs">
+      <DependentUpon>MgmtCategoryListSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\ProductInsert.ascx.cs">
+      <DependentUpon>ProductInsert.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\ProductInsert.ascx.designer.cs">
+      <DependentUpon>ProductInsert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\ProductInsertSettings.ascx.cs">
+      <DependentUpon>ProductInsertSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\ProductInsertSettings.ascx.designer.cs">
+      <DependentUpon>ProductInsertSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\VideoInsert.ascx.cs">
+      <DependentUpon>VideoInsert.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\VideoInsert.ascx.designer.cs">
+      <DependentUpon>VideoInsert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\VideoInsertSettings.ascx.cs">
+      <DependentUpon>VideoInsertSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\VideoInsertSettings.ascx.designer.cs">
+      <DependentUpon>VideoInsertSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\ServiceInsert.ascx.cs">
+      <DependentUpon>ServiceInsert.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\ServiceInsert.ascx.designer.cs">
+      <DependentUpon>ServiceInsert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\ServiceInsertSettings.ascx.cs">
+      <DependentUpon>ServiceInsertSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\ServiceInsertSettings.ascx.designer.cs">
+      <DependentUpon>ServiceInsertSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\ImageInsert.ascx.cs">
+      <DependentUpon>ImageInsert.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\ImageInsert.ascx.designer.cs">
+      <DependentUpon>ImageInsert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\ImageInsertSettings.ascx.cs">
+      <DependentUpon>ImageInsertSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Gallery.Image.Mgmt\ImageInsertSettings.ascx.designer.cs">
+      <DependentUpon>ImageInsertSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.HelloWord\View.ascx.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.HelloWord\View.ascx.designer.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Tags\View.ascx.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Tags\View.ascx.designer.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Utils\View.ascx.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.Utils\View.ascx.designer.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.WatermarkPhoto\View.ascx.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\TH.NUCE.WatermarkPhoto\View.ascx.designer.cs">
+      <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DNNRelatedProvider.cs" />
+    <Compile Include="ExportExcel.aspx.cs">
+      <DependentUpon>ExportExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportExcel.aspx.designer.cs">
+      <DependentUpon>ExportExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\Admin\GetLogs.ashx.cs">
+      <DependentUpon>GetLogs.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\Common\RequestServices\RequestServices_SendMail.aspx.cs">
+      <DependentUpon>RequestServices_SendMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handler\Common\RequestServices\RequestServices_SendMail.aspx.designer.cs">
+      <DependentUpon>RequestServices_SendMail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\NEcommerce\SearchProducts1.ashx.cs">
+      <DependentUpon>SearchProducts1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\NEcommerce\SearchProducts.ashx.cs">
+      <DependentUpon>SearchProducts.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MailProvider.cs" />
+    <Compile Include="FileProvider.cs" />
+    <Compile Include="Handler\Common\RequestServices\RequestServices_UpdateStatus.aspx.cs">
+      <DependentUpon>RequestServices_UpdateStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handler\Common\RequestServices\RequestServices_UpdateStatus.aspx.designer.cs">
+      <DependentUpon>RequestServices_UpdateStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\Common\RequestServices\RequestServices_GetDetail.ashx.cs">
+      <DependentUpon>RequestServices_GetDetail.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\Services\GetServiceByCategories.ashx.cs">
+      <DependentUpon>GetServiceByCategories.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\Common\RequestServices\RequestServices_GetListsWithPage.ashx.cs">
+      <DependentUpon>RequestServices_GetListsWithPage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="RequestServices.cs" />
+    <Compile Include="TagProvider.cs" />
+    <Compile Include="ProductProvider.cs" />
+    <Compile Include="TypeRoleCollection.cs" />
+    <Compile Include="UtilityProvider.cs" />
+    <Compile Include="XMLProvider.cs" />
+    <Compile Include="VideoProvider.cs" />
+    <Compile Include="ServiceProvider.cs" />
+    <Compile Include="ImageProvider.cs" />
+    <Compile Include="LogProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="UIProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\App_LocalResources\ServiceInsert.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Service.Mgmt\App_LocalResources\ServiceInsertSettings.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\App_LocalResources\VideoInsert.ascx.resx" />
+    <Content Include="DesktopModules\TH.NUCE.Gallery.Video.Mgmt\App_LocalResources\VideoInsertSettings.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\App_LocalResources\ProductInsert.ascx.resx" />
+    <Content Include="DesktopModules\TH.NUCE.Ecommerce.Product.Mgmt\App_LocalResources\ProductInsertSettings.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DesktopModules\TH.NUCE.Core.Mgmt.Categories\App_LocalResources\MgmtCategoryInsert.ascx.resx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>24069</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:24069/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

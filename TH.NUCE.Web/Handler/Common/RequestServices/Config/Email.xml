@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DS>
+  <DT>
+    <Email>phuongdt1189@gmail.com</Email>
+    <Smpt>smtp.gmail.com</Smpt>
+    <Port>587</Port>
+    <IsSSL>1</IsSSL>
+    <UserName>phuongdt1189@gmail.com</UserName>
+    <Password>datphuong2012</Password>
+    <Title>Sendmail thanh cong</Title>
+    <Body>Ban da xac thuc thanh cong $$Link</Body>
+    <EmailTo></EmailTo>
+  </DT>
+</DS>

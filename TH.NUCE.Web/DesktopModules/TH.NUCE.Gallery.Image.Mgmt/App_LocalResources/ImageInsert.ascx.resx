@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnReturn.Text" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="errEmptyName.Text" xml:space="preserve">
+    <value>The name cannot be empty.</value>
+  </data>
+  <data name="errNoRole.Text" xml:space="preserve">
+    <value>You aren't authorized to do this action.</value>
+  </data>
+  <data name="errSameName.Text" xml:space="preserve">
+    <value>An article with the same name and description exists.</value>
+  </data>
+  <data name="errSomeError.Text" xml:space="preserve">
+    <value>Insert Failed.</value>
+  </data>
+  <data name="lblCategories.Help" xml:space="preserve">
+    <value>Choose the categories that this article will also belong to.</value>
+  </data>
+  <data name="lblCategories.Text" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="lblExpiredDate.Help" xml:space="preserve">
+    <value>Enter the date that this article will expired. After this date, the article will no longer appear if its category is set to use Expire Mode.</value>
+  </data>
+  <data name="lblExpiredDate.Text" xml:space="preserve">
+    <value>Expired At</value>
+  </data>
+  <data name="lblGeneral.Help" xml:space="preserve">
+    <value>Input Value</value>
+  </data>
+  <data name="lblIsUseExpired.Text" xml:space="preserve">
+    <value>Expired?</value>
+  </data>
+  <data name="lblDisplayDate.Help" xml:space="preserve">
+    <value>Enter the date that this article will be display. Before this date, the article will not appear.</value>
+  </data>
+  <data name="lblDisplayDate.Text" xml:space="preserve">
+    <value>Display At</value>
+  </data>
+  <data name="lblIsHot.Help" xml:space="preserve">
+    <value>Chose if this article is hot or not. If checked, chose how many days the hot status of this article will remain. This function can only be used with templates that support it.</value>
+  </data>
+  <data name="lblIsHot.Text" xml:space="preserve">
+    <value>Hot In</value>
+  </data>
+  <data name="lblLead.Help" xml:space="preserve">
+    <value>Enter the short description of this article.</value>
+  </data>
+  <data name="lblLead.Text" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="lblProductName.Help" xml:space="preserve">
+    <value>Enter the ProductName of this article.</value>
+  </data>
+  <data name="lblProductName.Text" xml:space="preserve">
+    <value>ProductName</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h2&gt;About The Article Insert View&lt;/h2&gt;
+
+&lt;p&gt;In this window, you can add a new article or edit an already existed article.&lt;/p&gt;
+
+&lt;b&gt;&lt;p&gt;Functions:&lt;/p&gt;&lt;/b&gt;
+&lt;ul style="list-style-type:circle;"&gt;
+&lt;li&gt;Update the content of an article.&lt;/li&gt;
+&lt;li&gt;Add the article to one or many categories.&lt;/li&gt;
+&lt;li&gt;Choose keywords in the keyword lists.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;b&gt;&lt;p&gt;Step:&lt;/p&gt;&lt;/b&gt;
+
+&lt;ol&gt;
+&lt;li&gt;1. At Title, enter the title of the article.&lt;/li&gt;
+&lt;li&gt;2. At Summary, enter the short description for the article.&lt;/li&gt;
+&lt;li&gt;3. At Content, enter the content of the article.&lt;/li&gt;
+&lt;li&gt;4. At Source, enter the source of the article, like a person or another e-newspaper.&lt;/li&gt;
+&lt;li&gt;5. At Image, choose an image on local computer to upload as the title image for this article.&lt;/li&gt;
+&lt;li&gt;6. At Image Note, enter the comment for the title image.&lt;/li&gt;
+&lt;li&gt;7. At Expired At, if available, enter the date that this article will expired. After this date, the article will no longer appear if its category is set to 
+use Expire Mode.&lt;/li&gt;
+&lt;li&gt;8. At Display At, enter the date that this article will be display. Before this date, the article will not appear.&lt;/li&gt;
+&lt;li&gt;9. At Hot In, if you want to set the article to Hot status, check the box. &lt;/li&gt;
+&lt;li&gt;10. If the box is checked, enter the number of days that you want the article to keep its Hot status.&lt;/li&gt;
+&lt;li&gt;11. At Variables, if available, enter the variable that associates with this article.&lt;/li&gt;
+&lt;li&gt;12. At Categories, if available, choose the categories that this article will also belong to.&lt;/li&gt;
+&lt;li&gt;13. At Tag Groups, the number of boxes depend on how many Tag Group that the category set of the article list has. 
+	&lt;br /&gt;. Enter the article's key words 
+	&lt;br /&gt;OR
+	&lt;br /&gt;. Click on an existed keyword to add it to the box.&lt;/li&gt;
+&lt;li&gt;14. Click Save&lt;/li&gt;
+&lt;/ol&gt;</value>
+  </data>
+  <data name="lblDescription.Help" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblDays.Help" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="lblDays.Text" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="errFormatOrder.Text" xml:space="preserve">
+    <value>Loi Format Order</value>
+  </data>
+  <data name="errFormatPrice.Text" xml:space="preserve">
+    <value>Loi Format Price</value>
+  </data>
+  <data name="errFormatPriceOld.Text" xml:space="preserve">
+    <value>Loi Format PriceOld</value>
+  </data>
+  <data name="errFormatWeight.Text" xml:space="preserve">
+    <value>Loi Format Weight</value>
+  </data>
+  <data name="lblLargeimage.Help" xml:space="preserve">
+    <value>Largeimage</value>
+  </data>
+  <data name="lblLargeimage.Text" xml:space="preserve">
+    <value>Largeimage</value>
+  </data>
+  <data name="lblOrder.Help" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="lblOrder.Text" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="lblPrice.Help" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="lblPrice.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="lblPriceOld.Help" xml:space="preserve">
+    <value>PriceOld</value>
+  </data>
+  <data name="lblPriceOld.Text" xml:space="preserve">
+    <value>PriceOld</value>
+  </data>
+  <data name="lblProducedDate.Help" xml:space="preserve">
+    <value>ProducedDate</value>
+  </data>
+  <data name="lblProducedDate.Text" xml:space="preserve">
+    <value>ProducedDate</value>
+  </data>
+  <data name="lblSmallimage.Help" xml:space="preserve">
+    <value>Smallimage</value>
+  </data>
+  <data name="lblSmallimage.Text" xml:space="preserve">
+    <value>Smallimage</value>
+  </data>
+  <data name="lblStatusProduct.Help" xml:space="preserve">
+    <value>StatusProduct</value>
+  </data>
+  <data name="lblStatusProduct.Text" xml:space="preserve">
+    <value>StatusProduct</value>
+  </data>
+  <data name="lblSummary.Help" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="lblSummary.Text" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="lblWeight.Help" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="lblWeight.Text" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="lblAvatar.Help" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="lblAvatar.Text" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="lblContent.Help" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="lblContent.Text" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="lblTitle.Help" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lblTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lblImageFile.Help" xml:space="preserve">
+    <value>ImageFile</value>
+  </data>
+  <data name="lblImageFile.Text" xml:space="preserve">
+    <value>ImageFile</value>
+  </data>
+</root>
