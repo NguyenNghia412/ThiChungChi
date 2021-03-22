@@ -20,6 +20,7 @@ namespace nuce.web.model
         public string BaiLam { get; set; }
         public string MaDe { get; set; }
         public DateTime NgayGioBatDau { get; set; }
+        public DateTime NgayGioNopBai { get; set; }
         public float Diem { get; set; }
         public string Mota { get; set; }
         public string LecturerCode { get; set; }

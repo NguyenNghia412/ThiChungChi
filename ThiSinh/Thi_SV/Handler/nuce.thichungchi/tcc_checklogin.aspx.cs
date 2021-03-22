@@ -58,6 +58,7 @@ namespace nuce.web.sinhvien
                             KiThiLopHocSinhVien.TenBoDe = dtKiThiLopHocSinhVien.Rows[i]["TenBoDe"]?.ToString();
                             KiThiLopHocSinhVien.MaDe = dtKiThiLopHocSinhVien.Rows[i].IsNull("MaDe") ? "" : dtKiThiLopHocSinhVien.Rows[i]["MaDe"].ToString();
                             KiThiLopHocSinhVien.NgayGioBatDau = dtKiThiLopHocSinhVien.Rows[i].IsNull("NgayGioBatDau") ? DateTime.Now : DateTime.Parse(dtKiThiLopHocSinhVien.Rows[i]["NgayGioBatDau"].ToString());
+                            KiThiLopHocSinhVien.NgayGioNopBai = dtKiThiLopHocSinhVien.Rows[i].IsNull("NgayGioNopBai") ? DateTime.Now : DateTime.Parse(dtKiThiLopHocSinhVien.Rows[i]["NgayGioNopBai"].ToString());
                             if (KiThiLopHocSinhVien.Status.Equals(5) || KiThiLopHocSinhVien.Status.Equals(4))
                             {
                                 KiThiLopHocSinhVien.TongThoiGianConLai = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["TongThoiGianConLai"].ToString());
