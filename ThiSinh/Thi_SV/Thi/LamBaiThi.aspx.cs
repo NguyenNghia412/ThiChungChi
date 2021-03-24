@@ -118,24 +118,23 @@ namespace Thi_SV
                     case 3:
                         KiThiLopHocSinhVien.Status = 2;
                         dnn_NuceThi_KiThi_LopHoc_SinhVien.updateStatus(iKiThiLopHocSinhVienID, KiThiLopHocSinhVien.Status);
-                        //var now = DateTime.Now;
-
-                        ////TimeSpan diff = now.Subtract(KiThiLopHocSinhVien.NgayGioBatDau);
-                        ////KiThiLopHocSinhVien.TongThoiGianConLai = KiThiLopHocSinhVien.TongThoiGianConLai - (diff.Hours * 60 * 60 + diff.Minutes * 60 + diff.Seconds);
-                        //KiThiLopHocSinhVien.NgayGioBatDau = KiThiLopHocSinhVien.NgayGioNopBai;
-                        //var diff = now - KiThiLopHocSinhVien.NgayGioBatDau;
-                        //KiThiLopHocSinhVien.TongThoiGianConLai -= diff.Seconds;
-
-                        //KiThiLopHocSinhVien.NgayGioNopBai = now;
-
-                        //dnn_NuceThi_KiThi_LopHoc_SinhVien.updateThoiGianConLai(iKiThiLopHocSinhVienID, KiThiLopHocSinhVien.TongThoiGianConLai, KiThiLopHocSinhVien.NgayGioBatDau, KiThiLopHocSinhVien.NgayGioNopBai);
                         break;
                     default:
                         break;
                 }
                 if (KiThiLopHocSinhVien.Status < 3)
                 {
-                    KiThiLopHocSinhVien.NgayGioBatDau = DateTime.Now;
+                    var lastTime = Utils.ReadFile(iKiThiLopHocSinhVienID);
+                    if (lastTime == null)
+                    {
+                        var now = DateTime.Now;
+                        dnn_NuceThi_KiThi_LopHoc_SinhVien.updateThoiGianThiSinhThi(iKiThiLopHocSinhVienID, now, now);
+                        KiThiLopHocSinhVien.NgayGioBatDau = now;
+                    } else
+                    {
+                        //KiThiLopHocSinhVien.NgayGioBatDau = lastTime.NgayGioNopBai;
+                        KiThiLopHocSinhVien.TongThoiGianConLai = lastTime.TongThoiGianConLai;
+                    }
                     m_KiThiLopHocSinhViens[iKiThiLopHocSinhVienID] = KiThiLopHocSinhVien;
                     Session[Utils.session_kithi_lophoc_sinhvien] = m_KiThiLopHocSinhViens;
                     List<model.CauHoi> lsCauHois = JsonConvert.DeserializeObject<List<model.CauHoi>>(KiThiLopHocSinhVien.NoiDungDeThi);

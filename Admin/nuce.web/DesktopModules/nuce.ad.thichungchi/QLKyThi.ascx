@@ -787,7 +787,7 @@
 </script>
 <%--<script src="/Scripts/jquery-1.6.4.min.js"></script>--%>
 <script src="/Scripts/jquery.signalR-2.4.1.min.js"></script>
-<script src="http://localhost:44309/signalr/hubs"></script>
+<script src="http://thi-sinh-thi-demo.tk/signalr/hubs"></script>
 <script type="text/javascript">
     $(function () {
         
@@ -799,7 +799,14 @@
             }
         };
 
-        $.connection.hub.url = 'http://localhost:44309/signalr/hubs';
+        $.connection.hub.url = 'http://thi-sinh-thi-demo.tk/signalr/hubs';
+
+        $.connection.hub.disconnected(function () {
+            setTimeout(function () {
+                $.connection.hub.start();
+            }, 5000); // Restart connection after 5 seconds.you can set the time based your requirement
+        });
+
         $.connection.hub.start()
             .done(function () {
                 console.log("Connected!");

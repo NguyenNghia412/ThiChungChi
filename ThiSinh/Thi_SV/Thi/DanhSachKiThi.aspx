@@ -57,16 +57,16 @@
                   Data: [],
                   url: "/handler/nuce.thichungchi/",
                   init: function () {
-                      $.getJSON(DanhSachKiThi.url + "tcc_check.aspx", function (data) {
+                      $.getJSON(DanhSachKiThi.url + "tcc_check/", function (data) {
                           if (data == -1) {
                               window.location.href = "/Thi/DangNhap";
                           }
                           else {
-                              $.getJSON(DanhSachKiThi.url + "tcc_getUser.aspx", function (data1) {
+                              $.getJSON(DanhSachKiThi.url + "tcc_getUser/", function (data1) {
                                   $('#User').html('Xin chào ' + data1.Ho + ' ' + data1.Ten);
                               });
                               //Lay danh sach ki thi
-                              $.getJSON(DanhSachKiThi.url + "tcc_getDanhSachBaiThi.aspx", function (data1) {
+                              $.getJSON(DanhSachKiThi.url + "tcc_getDanhSachBaiThi/", function (data1) {
                                   DanhSachKiThi.Data = data1;
                                   var strHtml = "";
                                   var index = 1;
@@ -91,7 +91,8 @@
                                                   break;
                                               case 2: strTrangThai = "Đang thi";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ");\">Vào thi tiếp</button></td>";
+                                                  //strHtml += "<td></td>";
                                                   break;
                                               case 3: strTrangThai = "Đang tạm dừng";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
@@ -125,7 +126,7 @@
                       });
                   },
                   logout: function () {
-                      $.getJSON(DanhSachKiThi.url + "tcc_logout.aspx", function (data) {
+                      $.getJSON(DanhSachKiThi.url + "tcc_logout/", function (data) {
                           if (data == 1) {
                               window.location.href = "/Thi/DangNhap";
                           }

@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using nuce.web.model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using model = nuce.web.model;
@@ -177,6 +180,62 @@ namespace Thi_SV
 
             }
             return lsAnswares;
+        }
+        public static string generateContent(int IDKiThiSV, int tongThoiGianConLai, DateTime ngayGioBatDau, DateTime ngayGioNopBai, string connectionID)
+        {
+            return $"{IDKiThiSV}<<{tongThoiGianConLai}<<{ngayGioBatDau.ToString("yyyy/MM/dd HH:mm:ss")}<<{ngayGioNopBai.ToString("yyyy/MM/dd HH:mm:ss")}<<{connectionID}";
+        }
+
+        public static void WriteContentFile(int kitThiId, string content)
+        {
+            string tempDir = ConfigurationManager.AppSettings["TempFolder"];
+            try
+            {
+                Directory.CreateDirectory(tempDir);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(tempDir, ex);
+            }
+            string path = Path.Combine(tempDir, $"{kitThiId}.txt");
+            File.WriteAllText(path, content);
+            string logPath = Path.Combine(tempDir, $"log.txt");
+            // Create a file to write to.
+            if (!File.Exists(logPath))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(logPath))
+                {
+                    sw.WriteLine($"{content}\n");
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.AppendText(logPath))
+                {
+                    sw.WriteLine($"{content}\n");
+                }
+            }
+        }
+        public static TemporaryTimeModel ReadFile(int kitThiId)
+        {
+            string tempDir = ConfigurationManager.AppSettings["TempFolder"];
+            string path = Path.Combine(tempDir, $"{kitThiId}.txt");
+            if (!File.Exists(path))
+            {
+                return null;
+            }
+            string content = File.ReadAllText(path);
+            string[] symbol = { "<<" };
+ 
+            var splited = content.Split(symbol, StringSplitOptions.RemoveEmptyEntries);
+            return new TemporaryTimeModel
+            {
+                KiThiID = Convert.ToInt32(splited[0]),
+                TongThoiGianConLai = Convert.ToInt32(splited[1]),
+                NgayGioBatDau = Convert.ToDateTime(splited[2]),
+                NgayGioNopBai = Convert.ToDateTime(splited[3]),
+            };
         }
     }
 }

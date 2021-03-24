@@ -25,4 +25,12 @@ namespace nuce.web.model
         public int id { get; set; }
         public int status { get; set; }
     }
+
+    public class TemporaryTimeModel
+    {
+        public int KiThiID { get; set; }
+        public int TongThoiGianConLai { get; set; }
+        public DateTime NgayGioBatDau { get; set; }
+        public DateTime NgayGioNopBai { get; set; }
+    }
 }

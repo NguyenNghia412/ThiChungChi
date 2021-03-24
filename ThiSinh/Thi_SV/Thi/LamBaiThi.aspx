@@ -360,15 +360,23 @@
                 examHub.server.send('LamBaiThi', msg);
             },
             init: function () {
+                examHub.client.connected = function () {
+                    examHub.server.init(iIDKiThiLopHocSinhVien);
+                    console.log('Connected');
+                };
+                examHub.client.disconnected = function () {
+                    console.log('Disconnected');
+                };
                 $.connection.hub.start()
                     .done(function () {
-                        console.log("Connected!");
-                        ExamHubController.sendMsg('hello');
-                        ExamHubController.sendMsg('1');
+                        console.log("Started!");
                     })
                     .fail(function () {
                         console.log("Could not connect!");
                     });
+                window.onbeforeunload = function (e) {
+                    examHub.connection.stop();
+                };
             },
         };
         ExamHubController.init();

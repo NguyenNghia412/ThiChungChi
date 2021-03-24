@@ -98,7 +98,7 @@
             ID: -1,
             url: "/handler/nuce.thichungchi/",
             init: function () {
-                $.getJSON(this.url + "tcc_check.aspx", function (data) {
+                $.getJSON(this.url + "tcc_check/", function (data) {
                     if (data == 1) {
                         window.location.href = "/Thi/DanhSachKiThi";
                     }
@@ -109,7 +109,7 @@
                 console.log(1);
                 var username = $('#unname').val();
                 var pass = $('#psw').val();
-                $.getJSON(this.url + "tcc_checklogin.aspx?ma=" + username + "&&pass=" + pass, function (data) {
+                $.getJSON(this.url + "tcc_checklogin?ma=" + username + "&&pass=" + pass, function (data) {
                     if (data == 1) {
                         window.location.href = "/Thi/DanhSachKiThi";
                     }

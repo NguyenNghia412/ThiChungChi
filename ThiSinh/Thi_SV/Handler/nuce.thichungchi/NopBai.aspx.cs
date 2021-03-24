@@ -49,6 +49,11 @@ namespace nuce.web.sinhvien.ThiChungChi
 
                             TimeSpan ts = dtNopBai.Subtract(KiThiLopHocSinhVien.NgayGioBatDau);
                             int iTongThoiGianConLai = KiThiLopHocSinhVien.TongThoiGianConLai - (ts.Hours * 60 * 60 + ts.Minutes * 60 + ts.Seconds);
+                            var lastTime = Utils.ReadFile(kithilophocsinhvien);
+                            if (lastTime != null)
+                            {
+                                iTongThoiGianConLai = lastTime.TongThoiGianConLai;
+                            }
                             //Tam dung
                             KiThiLopHocSinhVien.Status = 3;
                             KiThiLopHocSinhVien.TongThoiGianConLai = iTongThoiGianConLai > 0 ? iTongThoiGianConLai : 0;

@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="QuanLyDapAn.ascx.cs" Inherits="nuce.web.thichungchi.QuanLyDapAn" %>
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="../../controls/TextEditor.ascx" %>
-<div runat="server" id="test">hihi</div>
 <div runat="server" id="divAnnouce" style="font-weight: bold; color: red; text-align: center;"></div>
 <div runat="server" id="divContent" class="table-responsive"></div>
 <div runat="server" id="divEdit">

@@ -94,5 +94,15 @@ namespace nuce.web.data
             Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteNonQuery(Nuce_ThiChungChi.ConnectionString, CommandType.StoredProcedure, "NuceThi_KiThi_LopHoc_SinhVien_update_thoigianconlai", param);
             //DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("NuceThi_KiThi_LopHoc_SinhVien_update_mota", iID, mota);
         }
+        public static void updateThoiGianThiSinhThi(int iID, DateTime NgayGioBatDau, DateTime NgayGioNopBai)
+        {
+            SqlParameter[] param = {
+                new SqlParameter("@iID", iID),
+                new SqlParameter("@NgayGioNopBai", NgayGioNopBai),
+                new SqlParameter("@NgayGioBatDau", NgayGioBatDau)
+            };
+            Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteNonQuery(Nuce_ThiChungChi.ConnectionString, CommandType.StoredProcedure, "NuceThi_KiThi_LopHoc_SinhVien_update_thoigian", param);
+            //DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("NuceThi_KiThi_LopHoc_SinhVien_update_mota", iID, mota);
+        }
     }
 }

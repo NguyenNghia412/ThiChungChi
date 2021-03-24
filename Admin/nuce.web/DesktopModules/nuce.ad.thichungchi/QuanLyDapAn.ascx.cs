@@ -129,7 +129,6 @@ namespace nuce.web.thichungchi
                 {
                     divAnnouce.InnerHtml = "Không có mã câu hỏi !";
                     divEdit.Visible = false;
-                    test.InnerHtml = "Nghia test";
                 }
             }
         }
