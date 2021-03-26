@@ -31,5 +31,7 @@ namespace nuce.web.model
         public int SubjectType { get; set; }
         public string DepartmentCode { get; set; }
         public string TenBoDe { get; set; }
+        public int LoaiDe { get; set; }
+        public int ThoiGianNopTruoc { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace nuce.web.commons
            // DataSet ds = data.dnn_NuceCommon_Khoa.getName(-1).DataSet;
             context.Response.ContentType = "text/plain";
             string search = context.Request["search"].ToString();
-            string sql = string.Format(@"SELECT top 30 a.*,b.Ten as TenBoDe FROM [dbo].[NuceThi_KiThi] a inner join [dbo].[NuceThi_BoDe] b on a.BoDeID = b.[BoDeID] where a.Status <> 4 order by UpdatedDate desc");
+            string sql = string.Format(@"SELECT top 30 a.*,b.Ten as TenBoDe, b.LoaiDe, b.TuLuan_ThoiGianNopTruoc  FROM [dbo].[NuceThi_KiThi] a inner join [dbo].[NuceThi_BoDe] b on a.BoDeID = b.[BoDeID] where a.Status <> 4 order by UpdatedDate desc");
             DataTable dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
             context.Response.Write(DataTableToJSONWithJavaScriptSerializer(dt));
             HttpContext.Current.Response.Flush(); // Sends all currently buffered output to the client.

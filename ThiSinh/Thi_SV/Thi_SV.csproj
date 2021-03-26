@@ -152,6 +152,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Handler\nuce.thichungchi\tcc_updatestatus.ashx" />
+    <Content Include="Handler\nuce.thichungchi\tcc_upload_thituluan.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Handler\nuce.thichungchi\NopBai.aspx" />
     <Content Include="Handler\nuce.thichungchi\tcc_check.aspx" />
@@ -190,6 +191,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Thi\ThiTuLuan.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -205,6 +207,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\ConfigManager.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,6 +217,9 @@
     </Compile>
     <Compile Include="Handler\nuce.thichungchi\tcc_updatestatus.ashx.cs">
       <DependentUpon>tcc_updatestatus.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\nuce.thichungchi\tcc_upload_thituluan.ashx.cs">
+      <DependentUpon>tcc_upload_thituluan.ashx</DependentUpon>
     </Compile>
     <Compile Include="Thi\ChiTietBaiThi.aspx.cs">
       <DependentUpon>ChiTietBaiThi.aspx</DependentUpon>
@@ -312,6 +318,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Thi\ThiTuLuan.aspx.cs">
+      <DependentUpon>ThiTuLuan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Thi\ThiTuLuan.aspx.designer.cs">
+      <DependentUpon>ThiTuLuan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -324,6 +337,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Temp\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

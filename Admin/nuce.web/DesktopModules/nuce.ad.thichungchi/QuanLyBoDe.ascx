@@ -57,6 +57,25 @@
             </td>
         </tr>
         <tr>
+            <td>
+                <asp:Label ID="lblTgNopTruoc" runat="server" Text="Thời gian nộp trước<br />(Tự luận) : "></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtTgNopTruoc" runat="server" Width="5%"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblLoaiThi" runat="server" Text="Loại thi : "></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="slLoaiThi" runat="server">
+                    <asp:ListItem Enabled="true" Text="Trắc nghiệm" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Tự luận" Value="2"></asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2" align="right">
                 <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" OnClick="btnUpdate_Click" />
                 <asp:Button ID="btnQuayLai" runat="server" Text="Quay lại" OnClick="btnQuayLai_Click" />

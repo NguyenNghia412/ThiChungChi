@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nuce.web.thichungchi {
-    
-    
-    public partial class QuanLyBoDe {
-        
+namespace nuce.web.thichungchi
+{
+
+
+    public partial class QuanLyBoDe
+    {
+
         /// <summary>
         /// divAnnouce control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAnnouce;
-        
+
         /// <summary>
         /// divFilter control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFilter;
-        
+
         /// <summary>
         /// ddlNguoiDung_MonHoc control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNguoiDung_MonHoc;
-        
+
         /// <summary>
         /// divContent control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divContent;
-        
+
         /// <summary>
         /// divEdit control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEdit;
-        
+
         /// <summary>
         /// divNameNguoiDung_MonHoc control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNameNguoiDung_MonHoc;
-        
+
         /// <summary>
         /// lblMa control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMa;
-        
+
         /// <summary>
         /// txtMa control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMa;
-        
+
         /// <summary>
         /// lblTen control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTen;
-        
+
         /// <summary>
         /// txtTen control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTen;
-        
+
         /// <summary>
         /// lblMoTa control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMoTa;
-        
+
         /// <summary>
         /// txtMoTa control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMoTa;
-        
+
         /// <summary>
         /// lblThoiGianThi control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblThoiGianThi;
-        
+
         /// <summary>
         /// txtThoiGianThi control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtThoiGianThi;
-        
+
         /// <summary>
         /// lblSoDe control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSoDe;
-        
+
         /// <summary>
         /// txtSoDe control.
         /// </summary>
@@ -155,7 +157,43 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSoDe;
-        
+
+        /// <summary>
+        /// lblTgNopTruoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTgNopTruoc;
+
+        /// <summary>
+        /// txtTgNopTruoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTgNopTruoc;
+
+        /// <summary>
+        /// lblLoaiThi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLoaiThi;
+
+        /// <summary>
+        /// slLoaiThi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList slLoaiThi;
+
         /// <summary>
         /// btnUpdate control.
         /// </summary>
@@ -164,7 +202,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
+
         /// <summary>
         /// btnQuayLai control.
         /// </summary>
@@ -173,7 +211,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnQuayLai;
-        
+
         /// <summary>
         /// txtType control.
         /// </summary>
@@ -182,7 +220,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtType;
-        
+
         /// <summary>
         /// txtNguoiDung_MonHocID control.
         /// </summary>
@@ -191,7 +229,7 @@ namespace nuce.web.thichungchi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNguoiDung_MonHocID;
-        
+
         /// <summary>
         /// txtID control.
         /// </summary>

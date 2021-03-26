@@ -21,7 +21,7 @@ namespace nuce.web.sinhvien
                 #region KiThiLopHocSinhVien
                 SinhVien sv = new SinhVien();
                 sv = (SinhVien)Session[Utils.session_sinhvien];
-                DataTable dtKiThiLopHocSinhVien = data.dnn_NuceThi_KiThi_LopHoc_SinhVien.getBySinhVien(sv.SinhVienID);
+                DataTable dtKiThiLopHocSinhVien = dnn_NuceThi_KiThi_LopHoc_SinhVien.getBySinhVien(sv.SinhVienID);
 
                 Dictionary<int, KiThiLopHocSinhVien> KiThiLopHocSinhViens = new Dictionary<int, KiThiLopHocSinhVien>();
 
@@ -30,7 +30,7 @@ namespace nuce.web.sinhvien
                     int iLenghKiThiLopHocSinhVien = dtKiThiLopHocSinhVien.Rows.Count;
                     for (int i = 0; i < iLenghKiThiLopHocSinhVien; i++)
                     {
-                        model.KiThiLopHocSinhVien KiThiLopHocSinhVien = new model.KiThiLopHocSinhVien();
+                        model.KiThiLopHocSinhVien KiThiLopHocSinhVien = new KiThiLopHocSinhVien();
                         KiThiLopHocSinhVien.BoDeID = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["BoDeID"].ToString());
                         KiThiLopHocSinhVien.DeThiID = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["DeThiID"].ToString());
                         KiThiLopHocSinhVien.KiThi_LopHoc_SinhVien = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["KiThi_LopHoc_SinhVienID"].ToString());
@@ -47,6 +47,8 @@ namespace nuce.web.sinhvien
                         KiThiLopHocSinhVien.MaDe = dtKiThiLopHocSinhVien.Rows[i].IsNull("MaDe") ? "" : dtKiThiLopHocSinhVien.Rows[i]["MaDe"].ToString();
                         KiThiLopHocSinhVien.NgayGioBatDau = dtKiThiLopHocSinhVien.Rows[i].IsNull("NgayGioBatDau") ? DateTime.Now : DateTime.Parse(dtKiThiLopHocSinhVien.Rows[i]["NgayGioBatDau"].ToString());
                         KiThiLopHocSinhVien.NgayGioNopBai = dtKiThiLopHocSinhVien.Rows[i].IsNull("NgayGioNopBai") ? DateTime.Now : DateTime.Parse(dtKiThiLopHocSinhVien.Rows[i]["NgayGioNopBai"].ToString());
+                        KiThiLopHocSinhVien.LoaiDe = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["LoaiDe"].ToString());
+                        KiThiLopHocSinhVien.ThoiGianNopTruoc = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["tuluan_thoigiannoptruoc"].ToString());
                         if (KiThiLopHocSinhVien.Status.Equals(5) || KiThiLopHocSinhVien.Status.Equals(4))
                         {
                             KiThiLopHocSinhVien.TongThoiGianConLai = int.Parse(dtKiThiLopHocSinhVien.Rows[i]["TongThoiGianConLai"].ToString());

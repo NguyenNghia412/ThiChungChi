@@ -174,7 +174,7 @@ namespace nuce.web.thi
 
             if (strType == "insert")
             {
-                data.dnn_NuceThi_BoDe.insert(iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1);
+                //data.dnn_NuceThi_BoDe.insert(iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1);
                 //DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("THCore_TM_InsertTags", iGroupTags, strName, "","","");
                 returnMain(txtNguoiDung_MonHocID.Text);
             }
@@ -183,7 +183,7 @@ namespace nuce.web.thi
                 if (strType == "edit")
                 {
                     int iID = int.Parse(txtID.Text);
-                    data.dnn_NuceThi_BoDe.update(iID, iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1);
+                    //data.dnn_NuceThi_BoDe.update(iID, iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1);
                     returnMain(txtNguoiDung_MonHocID.Text);
                 }
             }

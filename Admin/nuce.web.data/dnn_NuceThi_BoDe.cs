@@ -36,9 +36,9 @@ namespace nuce.web.data
 	        @ThoiGianThi int,
 	        @Type int
          */
-        public static void update(int iID, int NguoiDung_MonHocID, string txtMa, string txtTen,string Mota,int ThoiGianThi,int SoDe,int Type)
+        public static void update(int iID, int NguoiDung_MonHocID, string txtMa, string txtTen,string Mota,int ThoiGianThi,int SoDe,int Type, int LoaiDe, int ThoiGianNopTruoc)
         {
-            DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("NuceThi_BoDe_update", iID, NguoiDung_MonHocID, txtMa, txtTen, Mota, ThoiGianThi,SoDe, Type);
+            DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("NuceThi_BoDe_update", iID, NguoiDung_MonHocID, txtMa, txtTen, Mota, ThoiGianThi,SoDe, Type, LoaiDe, ThoiGianNopTruoc);
         }
         public static void updateStatus(int iID, int status)
         {
@@ -48,9 +48,9 @@ namespace nuce.web.data
         {
             DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("NuceThi_BoDe_update_diemtoida", iID, diem);
         }
-        public static int insert(int NguoiDung_MonHocID, string txtMa, string txtTen, string Mota, int ThoiGianThi,int SoDe, int Type)
+        public static int insert(int NguoiDung_MonHocID, string txtMa, string txtTen, string Mota, int ThoiGianThi,int SoDe, int Type, int LoaiDe, int ThoiGianNopTruoc)
         {
-            return DotNetNuke.Data.DataProvider.Instance().ExecuteScalar<int>("NuceThi_BoDe_insert", NguoiDung_MonHocID, txtMa, txtTen, Mota, ThoiGianThi,SoDe, Type);
+            return DotNetNuke.Data.DataProvider.Instance().ExecuteScalar<int>("NuceThi_BoDe_insert", NguoiDung_MonHocID, txtMa, txtTen, Mota, ThoiGianThi,SoDe, Type, LoaiDe, ThoiGianNopTruoc);
         }
         public static int getStatus(int BoDeID)
         {

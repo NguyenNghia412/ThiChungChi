@@ -6,6 +6,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Thi_SV.Common;
 using model = nuce.web.model;
 
 namespace Thi_SV
@@ -188,7 +189,7 @@ namespace Thi_SV
 
         public static void WriteContentFile(int kitThiId, string content)
         {
-            string tempDir = ConfigurationManager.AppSettings["TempFolder"];
+            string tempDir = ConfigManager.GetConfig(ConfigManager.TemporaryFolder);
             try
             {
                 Directory.CreateDirectory(tempDir);
@@ -219,7 +220,7 @@ namespace Thi_SV
         }
         public static TemporaryTimeModel ReadFile(int kitThiId)
         {
-            string tempDir = ConfigurationManager.AppSettings["TempFolder"];
+            string tempDir = ConfigManager.GetConfig(ConfigManager.TemporaryFolder);
             string path = Path.Combine(tempDir, $"{kitThiId}.txt");
             if (!File.Exists(path))
             {
@@ -236,6 +237,29 @@ namespace Thi_SV
                 NgayGioBatDau = Convert.ToDateTime(splited[2]),
                 NgayGioNopBai = Convert.ToDateTime(splited[3]),
             };
+        }
+        public static string RemoveUnicode(string text)
+        {
+            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
+    "đ",
+    "é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ",
+    "í","ì","ỉ","ĩ","ị",
+    "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
+    "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự",
+    "ý","ỳ","ỷ","ỹ","ỵ",};
+            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
+    "d",
+    "e","e","e","e","e","e","e","e","e","e","e",
+    "i","i","i","i","i",
+    "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
+    "u","u","u","u","u","u","u","u","u","u","u",
+    "y","y","y","y","y",};
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                text = text.Replace(arr1[i], arr2[i]);
+                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+            }
+            return text;
         }
     }
 }

@@ -164,6 +164,7 @@
                                     <th>Ca thi</th>
                                     <th>Ngày thi</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody id="tbXuatBangDiemContent">
@@ -313,6 +314,7 @@
         </div>
     </div>
 </div>
+<script src="Resources/config.js"></script>
 <script>
     (function ($) {
         $.fn.serializeAny = function () {
@@ -328,6 +330,7 @@
     var QuanLyKyThi = {
         ID: -1,
         Status: 1,
+        LoaiDe: 1,
         DataDanhMuc:[],
         Data: [],
         url: "/handler/nuce.ad.thichungchi/",
@@ -374,7 +377,7 @@
             QuanLyKyThi.searchDanhSachThiSinh();
         },
         bindData: function () {
-            $('#tbContent').html("");
+            $('#tbContent').html('');
             $.getJSON(this.url + "ad_tcc_getkythi.ashx?search=-1", function (data) {
                 QuanLyKyThi.Data = data;
                 var strHtml = "";
@@ -382,6 +385,7 @@
                 let oldGroupKey = '';
                 $.each(data, function (i, item) {
                     var status = item.Status;
+                    var loaiDe = item.LoaiDe;
                     strHtml += "<tr>";
                     if (item.GroupKiThiKey !== oldGroupKey) {
                         count++;
@@ -395,7 +399,7 @@
                         case 1: strHtml += "<td style='color:blue;'><b>Mới</b></td>";
                             strHtml += "<td><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModalXepPhong\" onclick=\"QuanLyKyThi.initXepPhong(" + item.KiThiID + ");\">Phòng thi</button></td>";
                             strHtml += "<td><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal2\" onclick=\"QuanLyKyThi.initQuanLyDanhSachThiSinh(" + item.KiThiID + ",2,'vào danh sách thi ?');\">Danh sách thí sinh</button></td>";
-                            strHtml += "<td><button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#myModal1\" onclick=\"QuanLyKyThi.initDelete(" + item.KiThiID + ",2,'Bạn có chắc chắn muốn chuyển sang thi ?');\" style=\"width: 130px;\">Chuyển thi</button></td>";
+                            strHtml += "<td><button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#myModal1\" onclick=\"QuanLyKyThi.initDelete(" + item.KiThiID + ",2,'Bạn có chắc chắn muốn chuyển sang thi ?'," + loaiDe + ");\" style=\"width: 130px;\">Chuyển thi</button></td>";
                             break;
                         case 2: strHtml += "<td style='color:red;'><b>Đang thi</b></td>";
                             strHtml += "<td><button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#myModal3\" onclick=\"QuanLyKyThi.TheoDoiKiThi_init(" + item.KiThiID + ",2,'Theo dõi kì thi ?');\">Theo dõi kì thi</button></td>";
@@ -467,7 +471,7 @@
                 const url = this.url + "ad_tcc_updatekithi.ashx?ID=" + QuanLyKyThi.ID + "&&Ten=" + strTen + "&&BoDe=" + strBoDe + "&&MoTa=" + strMoTa + "&&PhongThi=" + strPhongThi;
                 $.post(url)
                     .done(function (data) {
-                        if (data == 1) {
+                        if (!Number.isNaN(data)) {
                             $("#edit_header_ThongBao").show();
                             $("#edit_header_ThongBao").html("Cập nhật thành công");
                             QuanLyKyThi.bindData();
@@ -488,7 +492,7 @@
                 const url = this.url + "ad_tcc_insertkithi.ashx?ID=" + QuanLyKyThi.ID + "&&Ten=" + strTen + "&&MoTa=" + strMoTa + "&&PhongThi=" + strPhongThi;
                 $.post(url, JSON.stringify(selectedBoDe))
                     .done(function (data) {
-                        if (data == 1) {
+                        if (!Number.isNaN(data)) {
                             $("#edit_header_ThongBao").show();
                             $("#edit_header_ThongBao").html("Cập nhật thành công");
                             QuanLyKyThi.bindData();
@@ -550,9 +554,10 @@
                 $('#tbContent2').html(strHtml);
             });
         },
-        initDelete: function (id, status, message) {
+        initDelete: function (id, status, message, loaide = 1) {
             QuanLyKyThi.ID = id;
             QuanLyKyThi.Status = status;
+            QuanLyKyThi.LoaiDe = loaide;
             $("#lblThongBaoXoa").html(message);
             $("#edit_header_ThongBao1").hide();
             $('#btnXoa').show();
@@ -560,8 +565,27 @@
         },
         delete: function () {
             //Update
+            if (QuanLyKyThi.Status === 2 && QuanLyKyThi.LoaiDe === _config.LoaiDe.TuLuan) {
+                QuanLyKyThi.chuyenThiTuLuan();
+                return;
+            }
             $.getJSON(this.url + "ad_tcc_deletekithi.ashx?ID=" + QuanLyKyThi.ID + "&&Status=" + QuanLyKyThi.Status, function (data) {
                 if (data == 1) {
+                    $("#edit_header_ThongBao1").show();
+                    $("#edit_header_ThongBao1").html("Thực hiện thành công");
+                    $('#btnKhong').text("Thoát");
+                    $('#btnXoa').hide();
+                    QuanLyKyThi.bindData();
+                }
+                else {
+                    $("#edit_header_ThongBao1").show();
+                    $("#edit_header_ThongBao1").html("Lỗi hệ thống");
+                }
+            });
+        },
+        chuyenThiTuLuan: function() {
+            $.getJSON(this.url + "ad_tcc_update_chuyenthituluan.ashx?ID=" + QuanLyKyThi.ID, function (data) {
+                if (!Number.isNaN(data)) {
                     $("#edit_header_ThongBao1").show();
                     $("#edit_header_ThongBao1").html("Thực hiện thành công");
                     $('#btnKhong').text("Thoát");
@@ -735,7 +759,8 @@
                                 <td>${item.TenPhong || ''}</td>
                                 <td>${item.TenCa || ''}</td>
                                 <td>${item.NgayThiFormatted || ''}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Xuất</button></td>
+                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Trắc nghiệm</button></td>
+                                <td><button type="button" class="btn btn-danger btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Tự luận</button></td>
                             </tr>`;
             });
             $(`#tbXuatBangDiemContent`).html(strHtml);
@@ -743,10 +768,21 @@
         xuatBangDiem: function (phongCaId = '') {
             const kiThiID = QuanLyKyThi.ID;
             console.log(phongCaId, kiThiID);
-            //const url = `${QuanLyKyThi.url}ad_tcc_exportbangdiem.ashx?IDPhongCaNgay=${phongCaId}`;
             const url = `/ExportWord.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
             window.location = url;
         },
+        xuatTuLuan: function (phongCaId = '') {
+            const kiThiID = QuanLyKyThi.ID;
+            console.log(phongCaId, kiThiID);
+            const url = `/ExportZip.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
+            window.location = url;
+        },
+        //xuatPhach: function (phongCaId = '') {
+        //    const kiThiID = QuanLyKyThi.ID;
+        //    console.log(phongCaId, kiThiID);
+        //    const url = `/ExportWord.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
+        //    window.location = url;
+        //},
         addPhongCa: function () {
             const phong = $(`#slPhongThi`).val();
             const ca = $(`#slCaThi`).val();
@@ -787,19 +823,19 @@
 </script>
 <%--<script src="/Scripts/jquery-1.6.4.min.js"></script>--%>
 <script src="/Scripts/jquery.signalR-2.4.1.min.js"></script>
-<script src="http://thi-sinh-thi-demo.tk/signalr/hubs"></script>
+<script src="http://localhost:8020/signalr/hubs"></script>
 <script type="text/javascript">
     $(function () {
         
         let examHub = $.connection.logHub;
+        $.connection.hub.url = 'http://localhost:8020/signalr/hubs';
+
         examHub.client.broadcastMessage = function (name, message) {
             console.log('broadcast msg: ', name, message);
             if (name === 'LamBaiThi' && message === '1') {
                 QuanLyKyThi.TheoDoiKiThi_searchDanhSachThiSinh();
             }
         };
-
-        $.connection.hub.url = 'http://thi-sinh-thi-demo.tk/signalr/hubs';
 
         $.connection.hub.disconnected(function () {
             setTimeout(function () {

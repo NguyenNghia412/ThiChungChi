@@ -87,20 +87,20 @@
                                           switch (trangthai) {
                                               case 1: strTrangThai = "Chuẩn bị thi";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ");\">Vào thi</button></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Vào thi</button></td>";
                                                   break;
                                               case 2: strTrangThai = "Đang thi";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ");\">Vào thi tiếp</button></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Vào thi tiếp</button></td>";
                                                   //strHtml += "<td></td>";
                                                   break;
                                               case 3: strTrangThai = "Đang tạm dừng";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ");\">Vào thi tiếp</button></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Vào thi tiếp</button></td>";
                                                   break;
                                               case 4: strTrangThai = "Đã thi xong";
                                                   strHtml += "<td style='color:blue;'>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" onclick=\"DanhSachKiThi.chitietbaithi(" + item.KiThi_LopHoc_SinhVien + ");\" class=\"btn btn-info\">Chi tiết</button></td>";
+                                                  strHtml += "<td><button type=\"button\" onclick=\"DanhSachKiThi.chitietbaithi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\" class=\"btn btn-info\">Chi tiết</button></td>";
                                                   break;
                                               case 5: strTrangThai = "Hủy thi";
                                                   strHtml += "<td style='color:red;'>" + strTrangThai + "</td>";
@@ -108,7 +108,7 @@
                                                   break;
                                               case 6: strTrangThai = "Thi lại";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ");\">Vào thi</button></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Vào thi</button></td>";
                                                   break;
                                               default: break;
                                           }
@@ -132,17 +132,14 @@
                           }
                       });
                   },
-                  VaoThi: function (id) {
+                  VaoThi: function (id, loaiDe = 1) {
+                      if (loaiDe === 2) {
+                          window.location.href = "/Thi/ThiTuLuan?kithilophocsinhvien=" + id;
+                          return;
+                      }
                       window.location.href = "/Thi/LamBaiThi?kithilophocsinhvien=" + id;
                   },
                   chitietbaithi: function (id) {
-                      //
-                      //$.each(DanhSachKiThi.Data, function (i, item) {
-                      //    if (item.KiThi_LopHoc_SinhVien == id) {
-                      //        $("#edit_header_ThongBao1").html(item.Mota);
-                      //    }
-                      //}
-                      //);
                       window.location.href = "/Thi/ChiTietBaiThi?kithilophocsinhvien=" + id;
                   }
               };

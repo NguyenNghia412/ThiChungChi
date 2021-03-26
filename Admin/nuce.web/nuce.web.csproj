@@ -301,6 +301,7 @@
     <Content Include="ExportPdf.aspx" />
     <Content Include="ExportExcel.aspx" />
     <Content Include="ExportWord.aspx" />
+    <Content Include="ExportZip.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Handler\nuce.thichungchi\NopBai.aspx" />
     <Content Include="Handler\nuce.thichungchi\tcc_getDanhSachBaiThi.aspx" />
@@ -410,6 +411,7 @@
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_update_phong_ca.ashx" />
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_get_phong_ca.ashx" />
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_exportbangdiem.ashx" />
+    <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_update_chuyenthituluan.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -444,6 +446,7 @@
     <Content Include="Handler\nuce.web.sinhvien\XacThucMac.aspx" />
     <Content Include="Handler\nuce.web.sinhvien\NopBai.aspx" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Resources\config.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />
@@ -997,6 +1000,13 @@
     <Compile Include="ExportWord.aspx.designer.cs">
       <DependentUpon>ExportWord.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ExportZip.aspx.cs">
+      <DependentUpon>ExportZip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportZip.aspx.designer.cs">
+      <DependentUpon>ExportZip.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1179,6 +1189,9 @@
     </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_save_import_excel_thisinh.ashx.cs">
       <DependentUpon>ad_tcc_save_import_excel_thisinh.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_update_chuyenthituluan.ashx.cs">
+      <DependentUpon>ad_tcc_update_chuyenthituluan.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_updatekhoathi.ashx.cs">
       <DependentUpon>ad_tcc_updatekhoathi.ashx</DependentUpon>

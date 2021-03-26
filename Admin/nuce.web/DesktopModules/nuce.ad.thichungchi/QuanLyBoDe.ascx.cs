@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using DotNetNuke.Entities.Modules;
+using nuce.web.model;
+
 namespace nuce.web.thichungchi
 {
     public partial class QuanLyBoDe : PortalModuleBase
@@ -38,7 +40,10 @@ namespace nuce.web.thichungchi
                                 txtTen.Text = tblTable.Rows[0]["Ten"].ToString();
                                 txtMoTa.Text = tblTable.Rows[0]["MoTa"].ToString();
                                 txtThoiGianThi.Text = tblTable.Rows[0]["ThoiGianThi"].ToString();
-                                txtSoDe.Text= tblTable.Rows[0].IsNull("SoDe")?"100" : tblTable.Rows[0]["SoDe"].ToString();
+                                txtSoDe.Text = tblTable.Rows[0].IsNull("SoDe") ? "100" : tblTable.Rows[0]["SoDe"].ToString();
+                                txtTgNopTruoc.Text = tblTable.Rows[0]["TuLuan_ThoiGianNopTruoc"].ToString();
+                                string LoaiDe = tblTable.Rows[0]["LoaiDe"].ToString(); ;
+                                slLoaiThi.Items.FindByValue(LoaiDe).Selected = true;
                                 txtID.Text = iID.ToString();
                             }
                         }
@@ -94,7 +99,9 @@ namespace nuce.web.thichungchi
             strTable += string.Format("<th>{0}</th>", "#");
             strTable += string.Format("<th>{0}</th>", "Mã");
             strTable += string.Format("<th>{0}</th>", "Tên");
+            strTable += string.Format("<th>{0}</th>", "Loại");
             strTable += string.Format("<th>{0}</th>", "T/G thi (phút)");
+            strTable += string.Format("<th>{0}</th>", "T/G nộp trước (phút)");
             strTable += string.Format("<th>{0}</th>", "Cấu trúc đề");
             strTable += string.Format("<th>{0}</th>", "Trạng thái");
             strTable += string.Format("<th>{0}</th>", "Danh sách đề");
@@ -106,12 +113,22 @@ namespace nuce.web.thichungchi
             for (int i = 0; i < tblTable.Rows.Count; i++)
             {
                 string BoDeID = tblTable.Rows[i]["BoDeID"].ToString();
+                var LoaiDeThi = (LoaiDe)Convert.ToInt32(tblTable.Rows[i]["LoaiDe"].ToString());
                 strTable += " <tr>";
                 strTable += string.Format("<td>{0}</td>", (i + 1));
                 strTable += string.Format("<td>{0}</td>", tblTable.Rows[i]["Ma"].ToString());
                 strTable += string.Format("<td>{0}</td>", tblTable.Rows[i]["Ten"].ToString());
+                strTable += string.Format("<td>{0}</td>", LoaiDeThi == LoaiDe.TuLuan ? "Tự luận" : "Trắc nghiệm");
                 strTable += string.Format("<td>{0}</td>", tblTable.Rows[i]["ThoiGianThi"].ToString());
-                strTable += string.Format("<td><a href='/tabid/43/default.aspx?NguoiDung_MonHocid={0}&&bodeid={1}'>{2}</a></td>",NguoiDung_MonHocID, BoDeID, "Cấu trúc đề");
+                strTable += string.Format("<td>{0}</td>", tblTable.Rows[i]["TuLuan_ThoiGianNopTruoc"].ToString());
+                if (LoaiDeThi == LoaiDe.TracNghiem)
+                {
+                    strTable += string.Format("<td><a href='/tabid/43/default.aspx?NguoiDung_MonHocid={0}&&bodeid={1}'>{2}</a></td>",NguoiDung_MonHocID, BoDeID, "Cấu trúc đề");
+                }
+                else if (LoaiDeThi == LoaiDe.TuLuan)
+                {
+                    strTable += "<td></td>";
+                }
 
 
                 int iStatus = int.Parse(tblTable.Rows[i]["Status"].ToString());
@@ -119,20 +136,41 @@ namespace nuce.web.thichungchi
                 {
                     case 1:
                         strTable += string.Format("<td>{0}</td>", "Bắt đầu");
-                        strTable += string.Format("<td>{0}</td>", "---");
+                        if (LoaiDeThi == LoaiDe.TracNghiem)
+                        {
+                            strTable += string.Format("<td>{0}</td>", "---");
+                        }
+                        else if (LoaiDeThi == LoaiDe.TuLuan)
+                        {
+                            strTable += "<td></td>";
+                        }
                         strTable += string.Format("<td><a href='/tabid/{0}/default.aspx?EditType=edit&&id={1}&&NguoiDung_MonHocid={2}&&NguoiDung_MonHocname={3}'>Sửa</a></td>", this.TabId, BoDeID, NguoiDung_MonHocID, NguoiDung_MonHocName);
                         strTable += string.Format("<td><a href='/tabid/{0}/default.aspx?EditType=delete&&id={1}&NguoiDung_MonHocid={2}'>Xóa</a></td>", this.TabId, BoDeID, NguoiDung_MonHocID);
                         break;
                     case 2:
                         strTable += string.Format("<td>{0}</td>", "Đã tạo đề");
-                        strTable += string.Format("<td><a href='/tabid/44/default.aspx?NguoiDung_MonHocid={0}&&bodeid={1}'>Danh sách đề</a></td>", NguoiDung_MonHocID,BoDeID);
+                        if (LoaiDeThi == LoaiDe.TracNghiem)
+                        {
+                            strTable += string.Format("<td><a href='/tabid/44/default.aspx?NguoiDung_MonHocid={0}&&bodeid={1}'>Danh sách đề</a></td>", NguoiDung_MonHocID, BoDeID);
+                        }
+                        else if (LoaiDeThi == LoaiDe.TuLuan)
+                        {
+                            strTable += "<td></td>";
+                        }
                         strTable += string.Format("<td><a href='/tabid/{0}/default.aspx?EditType=edit&&id={1}&&NguoiDung_MonHocid={2}&&NguoiDung_MonHocname={3}'>Sửa</a></td>", this.TabId, BoDeID, NguoiDung_MonHocID, NguoiDung_MonHocName);
                         strTable += string.Format("<td><a href='/tabid/{0}/default.aspx?EditType=delete&&id={1}&NguoiDung_MonHocid={2}'>Xóa</a></td>", this.TabId, BoDeID, NguoiDung_MonHocID);
 
                         break;
                     case 3:
                         strTable += string.Format("<td>{0}</td>", "Đã sử dụng bộ đề");
-                        strTable += string.Format("<td><a href='/tabid/44/default.aspx?NguoiDung_MonHocid={0}&&bodeid={1}'>Danh sách đề</a></td>", NguoiDung_MonHocID, BoDeID);
+                        if (LoaiDeThi == LoaiDe.TracNghiem)
+                        {
+                            strTable += string.Format("<td><a href='/tabid/44/default.aspx?NguoiDung_MonHocid={0}&&bodeid={1}'>Danh sách đề</a></td>", NguoiDung_MonHocID, BoDeID);
+                        }
+                        else if (LoaiDeThi == LoaiDe.TuLuan)
+                        {
+                            strTable += "<td></td>";
+                        }
                         strTable += string.Format("<td>{0}</td>", "Không sửa");
                         strTable += string.Format("<td>{0}</td>", "Không xóa");
                         break;
@@ -141,7 +179,7 @@ namespace nuce.web.thichungchi
                 strTable += "</tr>";
             }
             strTable += " <tr>";
-            strTable += string.Format("<td colspan='9' style='text-align:right;'><a href='/tabid/{0}/default.aspx?EditType=insert&&NguoiDung_MonHocid={1}&&NguoiDung_MonHocname={2}'>Thêm mới</a></td>", this.TabId, NguoiDung_MonHocID, NguoiDung_MonHocName);
+            strTable += string.Format("<td colspan='11' style='text-align:right;'><a href='/tabid/{0}/default.aspx?EditType=insert&&NguoiDung_MonHocid={1}&&NguoiDung_MonHocname={2}'>Thêm mới</a></td>", this.TabId, NguoiDung_MonHocID, NguoiDung_MonHocName);
             strTable += "</tr>";
             strTable += "</tbody>";
             strTable += "</table>";
@@ -155,8 +193,9 @@ namespace nuce.web.thichungchi
             string strMoTa = txtMoTa.Text;
             int iThoiGianThi =int.Parse(txtThoiGianThi.Text.Trim());
             int iSoDe = int.Parse(txtSoDe.Text.Trim());
-            int iNguoiDung_MonHocID = int.Parse(txtNguoiDung_MonHocID.Text)
-            ;
+            int iNguoiDung_MonHocID = int.Parse(txtNguoiDung_MonHocID.Text);
+            int tgNopTruoc = int.Parse(txtTgNopTruoc.Text);
+            int loaiDeThi = int.Parse(slLoaiThi.SelectedValue);
             if (strMa.Trim().Equals(""))
             {
                 divAnnouce.InnerText = "Không được để mã trắng";
@@ -170,7 +209,7 @@ namespace nuce.web.thichungchi
 
             if (strType == "insert")
             {
-                data.dnn_NuceThi_BoDe.insert(iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1);
+                data.dnn_NuceThi_BoDe.insert(iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1, loaiDeThi, tgNopTruoc);
                 //DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("THCore_TM_InsertTags", iGroupTags, strName, "","","");
                 returnMain(txtNguoiDung_MonHocID.Text);
             }
@@ -179,7 +218,7 @@ namespace nuce.web.thichungchi
                 if (strType == "edit")
                 {
                     int iID = int.Parse(txtID.Text);
-                    data.dnn_NuceThi_BoDe.update(iID, iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1);
+                    data.dnn_NuceThi_BoDe.update(iID, iNguoiDung_MonHocID, strMa, strTen, strMoTa, iThoiGianThi,iSoDe, 1, loaiDeThi, tgNopTruoc);
                     returnMain(txtNguoiDung_MonHocID.Text);
                 }
             }
