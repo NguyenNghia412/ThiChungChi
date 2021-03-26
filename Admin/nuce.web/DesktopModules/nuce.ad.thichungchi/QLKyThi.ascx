@@ -121,7 +121,7 @@
                             <input type="text" class="form-control" id="txtNgayThi" placeholder="dd/MM/yyyy">
                         </div>
                         <div>
-                            <button type="button" class="btn btn-default btn-sm">Làm mới</button>
+                            <%--<button type="button" class="btn btn-default btn-sm">Làm mới</button>--%>
                             <button type="button" class="btn btn-success btn-sm" onclick="XuLyPhongCa.addPhongCa();">Thêm</button>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
 </div>
 <!-- Modal Xuat Bang Diem -->
 <div id="myModalXuatBangDiem" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -155,6 +155,11 @@
                 <h4 class="modal-title">Xuất bảng điểm</h4>
             </div>
             <div class="modal-body">
+                <div id="divImportBangDiem" class="row">
+                    <div class="col-sm-2">
+                        <input type="file" name="choose-file-btn" id="btn-choose-file"/>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table">
@@ -163,6 +168,8 @@
                                     <th>Phòng thi</th>
                                     <th>Ca thi</th>
                                     <th>Ngày thi</th>
+                                    <th></th>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -314,7 +321,7 @@
         </div>
     </div>
 </div>
-<script src="Resources/config.js"></script>
+<script src="../Resources/config.js"></script>
 <script>
     (function ($) {
         $.fn.serializeAny = function () {
@@ -735,6 +742,7 @@
                                     <td>${item.TenCa || ''}</td>
                                     <td>${item.NgayThiFormatted || ''}</td>
                                     <td><button type="button" class="btn btn-danger btn-sm" onclick="XuLyPhongCa.deletePhongCa(${item.ID})">Xoá</button></td>
+                                    <td><button type="button" class="btn btn-success btn-sm" onclick="XuLyPhongCa.exportDanhSach(${item.ID})">Danh sách</button></td>
                                 </tr>`;
                     });
                     $(`#tbPhongCaContent`).html(strHtml);
@@ -759,16 +767,22 @@
                                 <td>${item.TenPhong || ''}</td>
                                 <td>${item.TenCa || ''}</td>
                                 <td>${item.NgayThiFormatted || ''}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Trắc nghiệm</button></td>
-                                <td><button type="button" class="btn btn-danger btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Tự luận</button></td>
+                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Download điểm trắc nghiệm</button></td>
+                                <td><button type="button" class="btn btn-success btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Ds Tự luận</button></td>
+                                <td><button type="button" class="btn btn-info btn-sm" onclick="XuLyPhongCa.importExcelDiem(${item.ID})">Upload điểm tự luận</button></td>
+                                <td><button type="button" class="btn btn-warning btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Download điểm tự luận</button></td>
                             </tr>`;
             });
             $(`#tbXuatBangDiemContent`).html(strHtml);
         },
         xuatBangDiem: function (phongCaId = '') {
             const kiThiID = QuanLyKyThi.ID;
-            console.log(phongCaId, kiThiID);
             const url = `/ExportWord.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
+            window.location = url;
+        },
+        exportDanhSach: function (phongCaId = '') {
+            const kiThiID = QuanLyKyThi.ID;
+            const url = `/ExportExcel.aspx?type=10&&PhongCaID=${phongCaId}&&KiThiID=${kiThiID}`;
             window.location = url;
         },
         xuatTuLuan: function (phongCaId = '') {
@@ -777,12 +791,6 @@
             const url = `/ExportZip.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
             window.location = url;
         },
-        //xuatPhach: function (phongCaId = '') {
-        //    const kiThiID = QuanLyKyThi.ID;
-        //    console.log(phongCaId, kiThiID);
-        //    const url = `/ExportWord.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
-        //    window.location = url;
-        //},
         addPhongCa: function () {
             const phong = $(`#slPhongThi`).val();
             const ca = $(`#slCaThi`).val();
@@ -804,6 +812,9 @@
                 XuLyPhongCa.getPhongCa(QuanLyKyThi.ID);
             });
         },
+        importExcelDiem: function (id = '') {
+
+        }
     };
     QuanLyKyThi.initData();
     QuanLyKyThi.bindData();

@@ -13,6 +13,45 @@
             background-image: url('../Images/Nuce/tuluan-bg.jpg');
             background-size: cover;
         }
+        .pt-5{
+            padding-top: 5rem;
+        }
+        .p-5{
+            padding: 5rem;
+        }
+        .mt-4{
+            margin-top: 5rem;
+        }
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+        }
+        .justify-content-between {
+            display: flex;
+            justify-content: space-between !important;
+        }
+        .w-100 {
+            width: 100% !important;
+        }
+        .h-100 {
+            height: 100% !important;
+        }
+        .border {
+            border: 1px solid #dee2e6!important;
+        }
+        .rounded {
+            border-radius: 1.25rem!important;
+        }
+        .mx-0 {
+            margin-left: 0;
+            margin-right: 0
+        }
+        .mr-3 {
+            margin-right: 3rem;
+        }
+        .text-danger {
+            color: #dc3545!important;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
@@ -20,14 +59,14 @@
         <div class="row justify-content-center mx-0">
             <div class="col-sm-12 col-md-5">
                 <div class="border rounded p-5">
-                    <h4 class="text-danger" style="text-align: center">Tự luận</h4>
+                    <h3 class="text-danger" style="text-align: center; font-weight: bold;">Tự luận</h3>
                     <h5 id="announcement" class="text-primary" style="text-align: center"></h5>
-                    <div class="mt-4 row justify-content-between">
+                    <div class="mt-4 row">
                         <input type="file" name="choose-file-btn" id="btn-choose-file"/>
                     </div>
-                    <div class="mt-4 row justify-content-between">
-                        <button type="button" class="btn btn-success btn-sm" onclick="ThiTuLuan.uploadFile()">Nộp bài</button>
-                        <button type="button" class="btn btn-danger btn-sm ml-3" onclick="ThiTuLuan.roiPhong()">Rời phòng</button>
+                    <div class="mt-4 row">
+                        <button type="button" class="btn btn-success" onclick="ThiTuLuan.uploadFile()">Nộp bài</button>
+                        <button type="button" class="btn btn-danger" onclick="ThiTuLuan.roiPhong()">Rời phòng</button>
                     </div>  
                 </div>
             </div>

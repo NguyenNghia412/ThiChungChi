@@ -43,7 +43,7 @@ namespace nuce.web
             string CaThi = dt.Rows[0]["CaThi"]?.ToString();
             #endregion
 
-            sql = $@"SELECT nt.ma, kls.made, kls.bailam
+            sql = $@"SELECT nt.ma, kls.made, kls.bailam, kls.KiThi_LopHoc_SinhVienID
                     FROM [Nuce_thi_chung_chi].[dbo].[NuceThi_KiThi_LopHoc_SinhVien] kls
                     left join Nuce_thichungchi_nguoithi nt on kls.sinhvienid = nt.id
                     where kls.phongthi_cathi_id = {idPhongCaNgay} and kls.[KiThi_LopHocID] = {idKiThi}";
@@ -53,6 +53,7 @@ namespace nuce.web
             List<string> dirs = new List<string>();
             Dictionary<string, string> ThiSinhMaDe = new Dictionary<string, string>();
             Dictionary<string, string> ThiSinhHash = new Dictionary<string, string>();
+            Dictionary<string, string> ThiSinhMaBaiLam = new Dictionary<string, string>();
             // Bai Lam
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -60,15 +61,17 @@ namespace nuce.web
                 string MaThiSinh = row["ma"]?.ToString();
                 string MaDe = row["made"]?.ToString();
                 string BaiLam = row["bailam"]?.ToString();
+                string MaBaiLam = row["KiThi_LopHoc_SinhVienID"]?.ToString();
 
                 BaiLam = Path.Combine(UploadsFolder, BaiLam);
                 dirs.Add(BaiLam);
 
                 ThiSinhMaDe.Add(MaThiSinh, MaDe);
+                ThiSinhMaBaiLam.Add(MaThiSinh, MaBaiLam);
             }
             // File Thi sinh ma de
             string DanhSachMaDeThiSinhFileName = Path.Combine(UploadsFolder, $"DanhSachThiSinhMaDe-{Guid.NewGuid()}.xlsx");
-
+            string CryptKey = ConfigurationManager.AppSettings["CryptKey"];
             using (XLWorkbook wb = new XLWorkbook())
             {
                 IXLWorksheet ws = wb.Worksheets.Add("DanhSachThiSinhMaDe");
@@ -79,30 +82,33 @@ namespace nuce.web
                 foreach (var item in ThiSinhMaDe)
                 {
                     i++;
-                    var hashCode = Utils.GetHashString(item.Key);
-                    ws.Cell(i, 1).Value = hashCode;
+                    string MaBaiLam = ThiSinhMaBaiLam[item.Key];
+                    var cryptCode = StringCipher.Encrypt(MaBaiLam, CryptKey);
+                    ws.Cell(i, 1).Value = cryptCode;
                     ws.Cell(i, 2).Value = $"'{item.Key}";
                     ws.Cell(i, 2).SetDataType(XLCellValues.Text);
                     ws.Cell(i, 3).Value = item.Value;
-                    ThiSinhHash.Add(item.Key, hashCode);
+                    ThiSinhHash.Add(item.Key, cryptCode);
                 }
                 wb.SaveAs(DanhSachMaDeThiSinhFileName);
             }
             dirs.Add(DanhSachMaDeThiSinhFileName);
-            // File Thi sinh
-            string DanhSachThiSinhFileName = Path.Combine(UploadsFolder, $"DanhSachThiSinh-{Guid.NewGuid()}.xlsx");
+            // File Thi sinh mã hoá
+            string DanhSachThiSinhFileName = Path.Combine(UploadsFolder, $"MaHoa-{Guid.NewGuid()}.xlsx");
 
             using (XLWorkbook wb = new XLWorkbook())
             {
-                IXLWorksheet ws = wb.Worksheets.Add("DanhSachThiSinh");
+                IXLWorksheet ws = wb.Worksheets.Add("MaHoa");
                 ws.Cell(1, 1).Value = "Mã";
-                ws.Cell(1, 2).Value = "Mã thí sinh";
+                ws.Cell(1, 2).Value = "Mã đề";
+                ws.Cell(1, 3).Value = "Điểm";
                 int i = 1;
                 foreach (var item in ThiSinhHash)
                 {
                     i++;
-                    ws.Cell(i, 1).Value = item.Key;
-                    ws.Cell(i, 2).Value = $"'{item.Value}";
+                    string made = ThiSinhMaDe[item.Key];
+                    ws.Cell(i, 1).Value = item.Value;
+                    ws.Cell(i, 2).Value = made;
                     ws.Cell(i, 2).SetDataType(XLCellValues.Text);
                 }
                 wb.SaveAs(DanhSachThiSinhFileName);
@@ -119,7 +125,7 @@ namespace nuce.web
             Response.Clear();
             Response.Buffer = true;
             Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            Response.AddHeader("content-disposition", $"attachment; filename={PhongThi}-{CaThi}-{DateTime.Now.ToFileTime()}.zip");
+            Response.AddHeader("content-disposition", $"attachment; filename={PhongThi}-{CaThi}-{NgayThi}.zip");
             Response.WriteFile(zipname);
             Response.Flush();
             Response.Close();

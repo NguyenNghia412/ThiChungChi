@@ -91,12 +91,12 @@
                                                   break;
                                               case 2: strTrangThai = "Đang thi";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Vào thi tiếp</button></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Thi tiếp</button></td>";
                                                   //strHtml += "<td></td>";
                                                   break;
                                               case 3: strTrangThai = "Đang tạm dừng";
                                                   strHtml += "<td>" + strTrangThai + "</td>";
-                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Vào thi tiếp</button></td>";
+                                                  strHtml += "<td><button type=\"button\" class=\"btn btn-info\" onclick=\"DanhSachKiThi.VaoThi(" + item.KiThi_LopHoc_SinhVien + ", " + item.LoaiDe + ");\">Thi tiếp</button></td>";
                                                   break;
                                               case 4: strTrangThai = "Đã thi xong";
                                                   strHtml += "<td style='color:blue;'>" + strTrangThai + "</td>";

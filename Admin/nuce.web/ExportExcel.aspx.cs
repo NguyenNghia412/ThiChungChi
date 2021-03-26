@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using ClosedXML.Excel;
 using nuce.web;
+using nuce.web.data;
 
 namespace TH.NUCE.Web
 {
@@ -50,6 +51,11 @@ namespace TH.NUCE.Web
                 case 9:
                     int ikithilophocid9 = int.Parse(Request.QueryString["kithilophocid"]);
                     ProcessDanhSachLopThi(ikithilophocid9);
+                    break;
+                case 10:
+                    int idKiThi = int.Parse(Request.QueryString["KiThiID"]);
+                    int idPhongCa = int.Parse(Request.QueryString["PhongCaID"]);
+                    ProcessDanhSachThiSinhTrongCaThi(idKiThi, idPhongCa);
                     break;
             }
             base.OnInit(e);
@@ -2045,6 +2051,40 @@ order by ten, Ho, Ma
                         {
                             sda.Fill(dt);
                             ExportToExcel(string.Format("danh_sach_lop{0}", DateTime.Now.ToFileTimeUtc()), "danh_sach_lop", dt);
+                        }
+                    }
+                }
+            }
+        }
+        public void ProcessDanhSachThiSinhTrongCaThi(int KiThiLopHocID, int PhongCaID)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ConnectionString;
+            string sql = $@"select p.TenPhong, c.TenCa, convert(varchar, a.ngaythi, 103) as NgayThi
+                                from nucethi_phongthi_cathi a
+                                left join nucethi_phongthi p on a.phongthiid = p.id
+                                left join nucethi_cathi c on a.cathiid = c.id
+                                where a.id = {PhongCaID}";
+            DataTable dataTbl = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
+            string TenPhong = dataTbl.Rows[0]["TenPhong"]?.ToString();
+            string TenCa = dataTbl.Rows[0]["TenCa"]?.ToString();
+            string NgayThi = dataTbl.Rows[0]["NgayThi"]?.ToString();
+            sql = $@"SELECT nt.Ma, nt.ho + ' ' + nt.ten as HoTen, convert(varchar, nt.ngaysinh, 103) as NgaySinh,
+		                        nt.NoiSinh, nt.cmt as CMND, nt.Mobile as DienThoai, '' as KiNhan, '' as GhiChu
+                            FROM [Nuce_thi_chung_chi].[dbo].[NuceThi_KiThi_LopHoc_SinhVien] kls
+                            left join Nuce_thichungchi_nguoithi nt on kls.sinhvienid = nt.id
+                            where kls.phongthi_cathi_id = {PhongCaID} and kls.[KiThi_LopHocID] = {KiThiLopHocID}";
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            ExportToExcel($"{TenPhong}_{TenCa}_{NgayThi}", "danh_sach_lop", dt);
                         }
                     }
                 }

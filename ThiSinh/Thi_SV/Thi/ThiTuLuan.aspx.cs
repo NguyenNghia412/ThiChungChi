@@ -24,7 +24,7 @@ namespace Thi_SV.Thi
                 int Status =  int.Parse(dt.Rows[0]["status"]?.ToString());
                 DateTime NgayGioNopBai = dt.Rows[0].IsNull("NgayGioNopBai") ? DateTime.Now : DateTime.Parse(dt.Rows[0]["NgayGioNopBai"].ToString());
 
-                if (Status > 3 || NgayGioNopBai > DateTime.Now)
+                if (Status > 3 || DateTime.Now > NgayGioNopBai)
                 {
                     Response.Redirect("/thi/DanhSachKiThi");
                     return;

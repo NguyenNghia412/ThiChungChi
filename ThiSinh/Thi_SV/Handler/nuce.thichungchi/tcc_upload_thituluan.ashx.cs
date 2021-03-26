@@ -34,7 +34,7 @@ namespace Thi_SV.Handler.nuce.thichungchi
 
             if (!strTenCu.Contains("_"))
             {
-                makeResponse(context, 2, "Tên bài làm phải đặt theo cú pháp [mã thí sinh]_[mã đề]");
+                makeResponse(context, 3, "Tên bài làm phải đặt theo cú pháp [mã thí sinh]_[mã đề]");
                 return;
             }
 
@@ -43,8 +43,34 @@ namespace Thi_SV.Handler.nuce.thichungchi
 
             try
             {
+                var now = DateTime.Now;
+
                 string idKiThiLopHocSinhVien = context.Request["ID"].ToString();
-                
+                var dt = dnn_NuceThi_KiThi_LopHoc_SinhVien.get(int.Parse(idKiThiLopHocSinhVien));
+
+                DateTime NgayGioNopBai = dt.Rows[0].IsNull("NgayGioNopBai") ? DateTime.Now : DateTime.Parse(dt.Rows[0]["NgayGioNopBai"].ToString());
+                DateTime NgayGioBatDau = dt.Rows[0].IsNull("NgayGioBatDau") ? DateTime.Now : DateTime.Parse(dt.Rows[0]["NgayGioBatDau"].ToString());
+                int ThoiGianNopTruoc = int.Parse(dt.Rows[0]["TuLuan_ThoiGianNopTruoc"].ToString());
+                int BaiThiStatus = int.Parse(dt.Rows[0]["Status"].ToString());
+
+                DateTime NgayGioNopTruoc = NgayGioBatDau.AddMinutes(ThoiGianNopTruoc);
+
+                if (BaiThiStatus > 3)
+                {
+                    makeResponse(context, 4, "Không được phép nộp bài thi nữa");
+                    return;
+                }
+                else if (now > NgayGioNopBai)
+                {
+                    makeResponse(context, 5, "Đã hết thời gian nộp bài");
+                    return;
+
+                } else if (now < NgayGioNopTruoc)
+                {
+                    makeResponse(context, 6, $"Bài làm chỉ được nộp sau khi bắt đầu thi {ThoiGianNopTruoc} phút");
+                    return;
+                }
+
                 string strTenMoi = string.Format("{0}", Utils.RemoveUnicode(filename).Replace(" ", "_"));
 
                 var uploadFolder = ConfigManager.GetConfig(ConfigManager.UploadsFolder);
