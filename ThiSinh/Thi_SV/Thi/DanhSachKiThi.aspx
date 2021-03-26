@@ -25,7 +25,7 @@
                     <th style="text-align: center;">Tên kì thi</th>
                     <th style="text-align: center;">Tên bộ đề</th>
                     <th style="width: 25%; text-align: center;">Môn thi</th>
-                    <th style="width: 15%; text-align: center;">trạng thái</th>
+                    <th style="width: 15%; text-align: center;">Trạng thái</th>
                     <th style="width: 10%; text-align: center;"></th>
                 </tr>
             </thead>
@@ -139,7 +139,10 @@
                       }
                       window.location.href = "/Thi/LamBaiThi?kithilophocsinhvien=" + id;
                   },
-                  chitietbaithi: function (id) {
+                  chitietbaithi: function (id, loaiDe = 1) {
+                      if (loaiDe === 2) {
+
+                      }
                       window.location.href = "/Thi/ChiTietBaiThi?kithilophocsinhvien=" + id;
                   }
               };

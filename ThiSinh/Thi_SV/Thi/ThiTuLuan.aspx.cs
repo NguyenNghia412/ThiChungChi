@@ -1,4 +1,5 @@
-﻿using System;
+﻿using nuce.web.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,16 @@ namespace Thi_SV.Thi
                     return;
                 }
                 int IDBaiThi = Convert.ToInt32(Request.QueryString["kithilophocsinhvien"]);
+                var dt = dnn_NuceThi_KiThi_LopHoc_SinhVien.get(IDBaiThi);
+                int Status =  int.Parse(dt.Rows[0]["status"]?.ToString());
+                DateTime NgayGioNopBai = dt.Rows[0].IsNull("NgayGioNopBai") ? DateTime.Now : DateTime.Parse(dt.Rows[0]["NgayGioNopBai"].ToString());
+
+                if (Status > 3 || NgayGioNopBai > DateTime.Now)
+                {
+                    Response.Redirect("/thi/DanhSachKiThi");
+                    return;
+                }
+
                 scrRun.InnerHtml = $"<script>ThiTuLuan.ID = {IDBaiThi}</script>";
             }
         }
