@@ -23,7 +23,7 @@ namespace nuce.web.Handler.nuce.ad.thichungchi
         public override void WriteData(HttpContext context)
         {
             int status = 0;
-            string msg = "";
+            string msg = "Thành công";
             try
             {
                 var files = context.Request.Files;
@@ -56,12 +56,12 @@ namespace nuce.web.Handler.nuce.ad.thichungchi
                         }
                         else
                         {
-                            string Diem = row.Cell(3).ToString();
-                            string EncryptedCode = row.Cell(1).ToString();
+                            string Diem = row.Cell(3).Value.ToString();
+                            string EncryptedCode = row.Cell(1).Value.ToString();
                             string MaBaiLam = StringCipher.Decrypt(EncryptedCode, CryptKey);
                             sql += $@"update [NuceThi_KiThi_LopHoc_SinhVien]
                                         set [Diem] = {Diem}
-                                        where = [KiThi_LopHoc_SinhVienID] = {MaBaiLam};";
+                                        where [KiThi_LopHoc_SinhVienID] = {MaBaiLam};";
                         }
                     }
                 }

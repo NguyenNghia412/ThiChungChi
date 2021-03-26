@@ -159,6 +159,9 @@
                     <div class="col-sm-2">
                         <input type="file" name="choose-file-btn" id="btn-choose-file"/>
                     </div>
+                    <div class="col-sm-12">
+                        <p id="upload-response" class="text-danger"></p>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -607,6 +610,7 @@
         },
         BangDiem_init: function (id) {
             QuanLyKyThi.ID = id;
+            $('#btn-choose-file').val('');
             XuLyPhongCa.getPhongCa(QuanLyKyThi.ID, XuLyPhongCa.initToExportBangDiem);
         },
         TheoDoiKiThi_init: function (id, status, message) {
@@ -767,13 +771,13 @@
                                 <td>${item.TenPhong || ''}</td>
                                 <td>${item.TenCa || ''}</td>
                                 <td>${item.NgayThiFormatted || ''}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Download điểm trắc nghiệm</button></td>
+                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Tải phiếu điểm</button></td>
                                 <td><button type="button" class="btn btn-success btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Ds Tự luận</button></td>
                                 <td><button type="button" class="btn btn-info btn-sm" onclick="XuLyPhongCa.importExcelDiem(${item.ID})">Upload điểm tự luận</button></td>
-                                <td><button type="button" class="btn btn-warning btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Download điểm tự luận</button></td>
                             </tr>`;
             });
             $(`#tbXuatBangDiemContent`).html(strHtml);
+            $(`#upload-response`).html('');
         },
         xuatBangDiem: function (phongCaId = '') {
             const kiThiID = QuanLyKyThi.ID;
@@ -813,7 +817,31 @@
             });
         },
         importExcelDiem: function (id = '') {
+            const url = `${QuanLyKyThi.url}ad_tcc_read_excel_diemtuluan.ashx`;
+            const fileInput = document.getElementById('btn-choose-file');
+            console.log(fileInput);
+            if (fileInput.files.length < 1) {
+                $('#upload-response').html('Bạn chưa chọn file');
+                return;
+            }
 
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    res = JSON.parse(res);
+                    $('#upload-response').html(res.msg);
+                },
+                error: function (err) {
+                    console.log('error');
+                },
+            });
         }
     };
     QuanLyKyThi.initData();

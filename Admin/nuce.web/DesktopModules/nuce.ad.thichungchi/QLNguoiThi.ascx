@@ -44,6 +44,7 @@
                 <th>Mã</th>
                 <th>Họ và tên</th>
                 <th>Ngày sinh</th>
+                <th>Số điện thoại</th>
                 <th>Danh mục</th>
                 <th style="width: 5%;"></th>
                 <th style="width: 5%;"></th>
@@ -456,6 +457,7 @@
                     strHtml += "<td>" + item.Ma + "</td>";
                     strHtml += "<td>" + item.Ho + " " + item.Ten + "</td>";
                     strHtml += "<td>" + item.NgaySinhVN + "</td>";
+                    strHtml += "<td>" + item.Mobile + "</td>";
                     strHtml += "<td>" + item.DanhMuc + "</td>";
                     strHtml += "<td><button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal2\" onclick=\"QuanLyNguoiThi.initBaoMat(" + item.ID + ");\">Mật khẩu</button></td>";
                     if (item.Type == 1) {
@@ -471,7 +473,7 @@
                     count++;
                 });
                 strHtml += "<tr>";
-                strHtml += "<td colspan='8' style='text-align:right;'><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"QuanLyNguoiThi.add();\">Thêm mới</button></td>";
+                strHtml += "<td colspan='9' style='text-align:right;'><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"QuanLyNguoiThi.add();\">Thêm mới</button></td>";
                 strHtml += "</tr>";
                 $('#tbContent').html(strHtml);
             });

@@ -412,6 +412,7 @@
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_get_phong_ca.ashx" />
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_exportbangdiem.ashx" />
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_update_chuyenthituluan.ashx" />
+    <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_read_excel_diemtuluan.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1180,6 +1181,9 @@
     </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_khoataikhoan.ashx.cs">
       <DependentUpon>ad_tcc_khoataikhoan.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_read_excel_diemtuluan.ashx.cs">
+      <DependentUpon>ad_tcc_read_excel_diemtuluan.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_read_excel_thisinh.ashx.cs">
       <DependentUpon>ad_tcc_read_excel_thisinh.ashx</DependentUpon>

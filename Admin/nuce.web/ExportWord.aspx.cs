@@ -26,6 +26,9 @@ namespace nuce.web
                 case 1:
                     ProcessBangDiem();
                     break;
+                case 2:
+                    ProcessBangDiemTuLuan();
+                    break;
             }
             base.OnInit(e);
         }
@@ -124,6 +127,10 @@ namespace nuce.web
             Response.End();
         }
 
+        private void ProcessBangDiemTuLuan()
+        {
+
+        }
         private void replaceTextTemplate(Text model, string oldValue, string newValue)
         {
             if (oldValue == null)
