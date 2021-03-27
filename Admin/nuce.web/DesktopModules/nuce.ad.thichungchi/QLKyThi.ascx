@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="BoDe">Bộ đề :</label>
-                    <select class="form-control" name="BoDe" id="slBoDe" multiple="multiple">
+                    <select class="form-control selectpicker" name="BoDe" id="slBoDe" multiple="multiple" data-max-options="1">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -102,6 +102,11 @@
                 <h4 class="modal-title">Phân phòng thi</h4>
             </div>
             <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p id="phong-ca-response" class="text-danger"></p>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -325,6 +330,12 @@
     </div>
 </div>
 <script src="../Resources/config.js"></script>
+<%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>--%>
+<link rel="stylesheet" href="/Scripts/bootstrap-select/css/bootstrap-select.min.css" />
+<script src="/Scripts/bootstrap-select/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="/Scripts/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker.min.css" />
+<script src="/Scripts/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     (function ($) {
         $.fn.serializeAny = function () {
@@ -343,7 +354,15 @@
         LoaiDe: 1,
         DataDanhMuc:[],
         Data: [],
+        DatePickerInputId: ['txtNgayThi'],
         url: "/handler/nuce.ad.thichungchi/",
+        initDatePicker: function () {
+            QuanLyKyThi.DatePickerInputId.forEach(id => {
+                $(`#${id}`).datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+            });
+        },
         initData: function () {
             $.getJSON(this.url + "ad_tcc_getdanhmuc.ashx", function (data) {
                 QuanLyKyThi.DataDanhMuc = data;
@@ -361,7 +380,9 @@
                 $.each(data, function (i, item) {
                     strHtml += "<option value=\"" + item.BoDeID + "\">" + item.Ten + "</option>";
                 });
-                $("#slBoDe").html(strHtml);
+                $('#slBoDe').html(strHtml);
+                $('#slBoDe').selectpicker();
+                $('#slBoDe').val([]);
             });
 
             $.getJSON(this.url + "ad_tcc_getphongthi.ashx", function (data) {
@@ -379,6 +400,7 @@
                 });
                 $("#slCaThi").html(strHtml);
             });
+            this.initDatePicker();
         },
         changeSlDanhMucSearch1: function (giatri) {
             QuanLyKyThi.searchDanhSachThiSinh();
@@ -441,13 +463,13 @@
             $("#edit_header_ThongBao").hide();
             $("#Ten").val("");
             $("#MoTa").val("");
-            $('#slBoDe').attr('multiple', true);
+            QuanLyKyThi.updateSelectBode(false);
         },
         fillData: function (id) {
             QuanLyKyThi.ID = id;
             $("#edit_header").html("Sửa thông tin");
             $("#edit_header_ThongBao").hide();
-            $('#slBoDe').attr('multiple', false);
+            QuanLyKyThi.updateSelectBode(1);
 
             $.each(QuanLyKyThi.Data, function (i, item) {
                 if (item.KiThiID == id) {
@@ -457,7 +479,11 @@
                     $("#PhongThi").val(item.PhongThi);
                 }
             });
-
+        },
+        updateSelectBode: function (num) {
+            $('#slBoDe').data('max-options', num);
+            $('#slBoDe').val([]);
+            $('#slBoDe').selectpicker('refresh');
         },
         update: function () {
             // Kiem tra ma trang
@@ -471,7 +497,7 @@
                 return;
             }
             if (QuanLyKyThi.ID > 0) {
-                const strBoDe = $("#slBoDe").val().trim();
+                const strBoDe = $("#slBoDe").val()[0].trim();
                 if (strBoDe == "") {
                     $("#edit_header_ThongBao").show();
                     $("#edit_header_ThongBao").html("Bạn hãy lựa chọn Bộ đề");
@@ -481,7 +507,7 @@
                 const url = this.url + "ad_tcc_updatekithi.ashx?ID=" + QuanLyKyThi.ID + "&&Ten=" + strTen + "&&BoDe=" + strBoDe + "&&MoTa=" + strMoTa + "&&PhongThi=" + strPhongThi;
                 $.post(url)
                     .done(function (data) {
-                        if (!Number.isNaN(data)) {
+                        if (Number(data)) {
                             $("#edit_header_ThongBao").show();
                             $("#edit_header_ThongBao").html("Cập nhật thành công");
                             QuanLyKyThi.bindData();
@@ -502,7 +528,7 @@
                 const url = this.url + "ad_tcc_insertkithi.ashx?ID=" + QuanLyKyThi.ID + "&&Ten=" + strTen + "&&MoTa=" + strMoTa + "&&PhongThi=" + strPhongThi;
                 $.post(url, JSON.stringify(selectedBoDe))
                     .done(function (data) {
-                        if (!Number.isNaN(data)) {
+                        if (Number(data)) {
                             $("#edit_header_ThongBao").show();
                             $("#edit_header_ThongBao").html("Cập nhật thành công");
                             QuanLyKyThi.bindData();
@@ -595,7 +621,7 @@
         },
         chuyenThiTuLuan: function() {
             $.getJSON(this.url + "ad_tcc_update_chuyenthituluan.ashx?ID=" + QuanLyKyThi.ID, function (data) {
-                if (!Number.isNaN(data)) {
+                if (Number(data)) {
                     $("#edit_header_ThongBao1").show();
                     $("#edit_header_ThongBao1").html("Thực hiện thành công");
                     $('#btnKhong').text("Thoát");
@@ -750,6 +776,7 @@
                                 </tr>`;
                     });
                     $(`#tbPhongCaContent`).html(strHtml);
+                    $(`#phong-ca-response`).html('');
                 }
             });
         },
@@ -771,17 +798,18 @@
                                 <td>${item.TenPhong || ''}</td>
                                 <td>${item.TenCa || ''}</td>
                                 <td>${item.NgayThiFormatted || ''}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID})">Tải phiếu điểm</button></td>
-                                <td><button type="button" class="btn btn-success btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Ds Tự luận</button></td>
+                                <td><button type="button" class="btn btn-primary btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID}, ${_config.LoaiDe.TracNghiem})">Điểm trắc nghiệm</button></td>
+                                <td><button type="button" class="btn btn-warning btn-sm" onclick="XuLyPhongCa.xuatBangDiem(${item.ID}, ${_config.LoaiDe.TuLuan})">Điểm tự luận</button></td>
+                                <td><button type="button" class="btn btn-success btn-sm" onclick="XuLyPhongCa.xuatTuLuan(${item.ID})">Bài làm tự luận</button></td>
                                 <td><button type="button" class="btn btn-info btn-sm" onclick="XuLyPhongCa.importExcelDiem(${item.ID})">Upload điểm tự luận</button></td>
                             </tr>`;
             });
             $(`#tbXuatBangDiemContent`).html(strHtml);
             $(`#upload-response`).html('');
         },
-        xuatBangDiem: function (phongCaId = '') {
+        xuatBangDiem: function (phongCaId = '', loaiDe = '') {
             const kiThiID = QuanLyKyThi.ID;
-            const url = `/ExportWord.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}`;
+            const url = `/ExportWord.aspx?type=1&&IDPhongCaNgay=${phongCaId}&&IDKiThi=${kiThiID}&&LoaiDe=${loaiDe}`;
             window.location = url;
         },
         exportDanhSach: function (phongCaId = '') {
@@ -801,7 +829,12 @@
             const ngay = $(`#txtNgayThi`).val();
             const url = `${QuanLyKyThi.url}ad_tcc_insert_phong_ca.ashx?phong=${phong}&&ca=${ca}&&ngay=${ngay}&&idKiThi=${QuanLyKyThi.ID}`;
             $.post(url, {}, function (res) {
-                XuLyPhongCa.getPhongCa(QuanLyKyThi.ID);
+                if (Number(res)) {
+                    XuLyPhongCa.getPhongCa(QuanLyKyThi.ID);
+                    $(`#phong-ca-response`).html('Thành công');
+                } else {
+                    $(`#phong-ca-response`).html(res);
+                }
             });
         },
         updatePhongCa: function (id = '', phong = '', ca = '', ngay = '') {
@@ -813,7 +846,12 @@
         deletePhongCa: function (id = '') {
             const url = `${QuanLyKyThi.url}ad_tcc_delete_phong_ca.ashx?id=${id}`;
             $.post(url, {}, function (res) {
-                XuLyPhongCa.getPhongCa(QuanLyKyThi.ID);
+                if (Number(res)) {
+                    XuLyPhongCa.getPhongCa(QuanLyKyThi.ID);
+                    $(`#phong-ca-response`).html('Thành công');
+                } else {
+                    $(`#phong-ca-response`).html(res);
+                }
             });
         },
         importExcelDiem: function (id = '') {

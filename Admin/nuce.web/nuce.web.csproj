@@ -446,8 +446,8 @@
     <Content Include="Handler\nuce.web.sinhvien\HocUpdateStatus.aspx" />
     <Content Include="Handler\nuce.web.sinhvien\XacThucMac.aspx" />
     <Content Include="Handler\nuce.web.sinhvien\NopBai.aspx" />
-    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Resources\config.js" />
+    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />

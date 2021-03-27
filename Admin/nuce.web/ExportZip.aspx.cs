@@ -49,6 +49,13 @@ namespace nuce.web
                     where kls.phongthi_cathi_id = {idPhongCaNgay} and kls.[KiThi_LopHocID] = {idKiThi}";
             dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
 
+            if (dt.Rows.Count == 0)
+            {
+                Response.ContentType = "text/plain";
+                Response.Write("Không có thí sinh nào.");
+                return;
+            }
+
             string UploadsFolder = ConfigurationManager.AppSettings["UploadsFolder"];
             List<string> dirs = new List<string>();
             Dictionary<string, string> ThiSinhMaDe = new Dictionary<string, string>();
@@ -116,10 +123,19 @@ namespace nuce.web
             dirs.Add(DanhSachThiSinhFileName);
             // zip
             string zipname = Path.Combine(UploadsFolder, $"{Guid.NewGuid()}.zip");
-            using (ZipFile zipFile = new ZipFile())
+            try
             {
-                zipFile.AddFiles(dirs, false, "");
-                zipFile.Save(zipname);
+                using (ZipFile zipFile = new ZipFile())
+                {
+                    zipFile.AddFiles(dirs, false, "");
+                    zipFile.Save(zipname);
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.ContentType = "text/plain";
+                Response.Write(ex.Message);
+                return;
             }
             
             Response.Clear();

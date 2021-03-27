@@ -37,6 +37,7 @@ namespace nuce.web
         {
             string idPhongCaNgay = Request["IDPhongCaNgay"]?.ToString();
             string idKiThi = Request["IDKiThi"]?.ToString();
+            string loaiDe = Request["LoaiDe"]?.ToString();
             #region lay thong tin phong thi, ca thi, ngay thi
             string sql = $@"SELECT pc.*, convert(varchar, pc.Ngaythi, 103) as NgayThiFormatted, p.TenPhong as PhongThi, c.TenCa as CaThi
                           from [NuceThi_PhongThi_CaThi] pc
@@ -54,7 +55,9 @@ namespace nuce.web
 		                    kls.made, cast(kls.diem as numeric(3,2)) as diem
                     FROM [Nuce_thi_chung_chi].[dbo].[NuceThi_KiThi_LopHoc_SinhVien] kls
                     left join Nuce_thichungchi_nguoithi nt on kls.sinhvienid = nt.id
-                    where kls.phongthi_cathi_id = {idPhongCaNgay} and kls.[KiThi_LopHocID] = {idKiThi}";
+                    left join nucethi_kithi kt on kt.KiThiID = kls.KiThi_LopHocID
+                    left join nucethi_bode bd on kt.BoDeID = bd.BoDeID
+                    where kls.phongthi_cathi_id = {idPhongCaNgay} and kls.[KiThi_LopHocID] = {idKiThi} and bd.LoaiDe = {loaiDe}";
             dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
 
             string path = HttpContext.Current.Server.MapPath("~/NuceDataUpload/Templates/Bang-diem-vien-tin-hoc.docx");
