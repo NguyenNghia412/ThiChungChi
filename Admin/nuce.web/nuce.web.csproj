@@ -46,8 +46,8 @@
     <Reference Include="DNN.Modules.SecurityAnalyzer">
       <HintPath>..\TH.NUCE.Web\bin\DNN.Modules.SecurityAnalyzer.dll</HintPath>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.12.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
-      <HintPath>packages\DocumentFormat.OpenXml.2.12.3\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke">
       <HintPath>..\TH.NUCE.Web\bin\DotNetNuke.dll</HintPath>
@@ -226,6 +226,7 @@
     <Content Include="DesktopModules\nuce.ad.thichungchi\QLDanhMucThiSinh.ascx" />
     <Content Include="DesktopModules\nuce.ad.thichungchi\QLNguoiThi.ascx" />
     <Content Include="DesktopModules\nuce.ad.thichungchi\QLMonThi.ascx" />
+    <Content Include="DesktopModules\nuce.ad.thichungchi\QLPhongThi.ascx" />
     <Content Include="DesktopModules\nuce.ad.thichungchi\QuanLyBoCauHoi.ascx" />
     <Content Include="DesktopModules\nuce.ad.thichungchi\QuanLyBoDe.ascx" />
     <Content Include="DesktopModules\nuce.ad.thichungchi\QuanLyCauHinhTrongBoDe.ascx" />
@@ -413,6 +414,9 @@
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_exportbangdiem.ashx" />
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_update_chuyenthituluan.ashx" />
     <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_read_excel_diemtuluan.ashx" />
+    <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_insertphongthi.ashx" />
+    <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_updatephongthi.ashx" />
+    <Content Include="Handler\nuce.ad.thichungchi\ad_tcc_deletephongthi.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -629,6 +633,13 @@
     </Compile>
     <Compile Include="DesktopModules\nuce.ad.thichungchi\QLMonThi.ascx.designer.cs">
       <DependentUpon>QLMonThi.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\nuce.ad.thichungchi\QLPhongThi.ascx.cs">
+      <DependentUpon>QLPhongThi.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\nuce.ad.thichungchi\QLPhongThi.ascx.designer.cs">
+      <DependentUpon>QLPhongThi.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\nuce.ad.thichungchi\QuanLyBoCauHoi.ascx.cs">
       <DependentUpon>QuanLyBoCauHoi.ascx</DependentUpon>
@@ -1116,6 +1127,9 @@
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_deletenguoithi.ashx.cs">
       <DependentUpon>ad_tcc_deletenguoithi.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_deletephongthi.ashx.cs">
+      <DependentUpon>ad_tcc_deletephongthi.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_delete_phong_ca.ashx.cs">
       <DependentUpon>ad_tcc_delete_phong_ca.ashx</DependentUpon>
     </Compile>
@@ -1176,6 +1190,9 @@
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_insertdanhmuc.ashx.cs">
       <DependentUpon>ad_tcc_insertdanhmuc.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_insertphongthi.ashx.cs">
+      <DependentUpon>ad_tcc_insertphongthi.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_insert_phong_ca.ashx.cs">
       <DependentUpon>ad_tcc_insert_phong_ca.ashx</DependentUpon>
     </Compile>
@@ -1193,6 +1210,9 @@
     </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_save_import_excel_thisinh.ashx.cs">
       <DependentUpon>ad_tcc_save_import_excel_thisinh.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_updatephongthi.ashx.cs">
+      <DependentUpon>ad_tcc_updatephongthi.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\nuce.ad.thichungchi\ad_tcc_update_chuyenthituluan.ashx.cs">
       <DependentUpon>ad_tcc_update_chuyenthituluan.ashx</DependentUpon>

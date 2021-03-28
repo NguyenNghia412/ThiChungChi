@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Ionic.Zip;
 using nuce.web.data;
+using nuce.web.model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,11 +32,13 @@ namespace nuce.web
         {
             string idPhongCaNgay = Request["IDPhongCaNgay"]?.ToString();
             string idKiThi = Request["IDKiThi"]?.ToString();
+            string loaiDe = Convert.ToInt32(LoaiDe.TuLuan).ToString();
             #region lay thong tin phong thi, ca thi, ngay thi
             string sql = $@"SELECT pc.*, convert(varchar, pc.Ngaythi, 103) as NgayThiFormatted, p.TenPhong as PhongThi, c.TenCa as CaThi
                           from [NuceThi_PhongThi_CaThi] pc
                           left join [Nuce_thi_chung_chi].[dbo].[NuceThi_PhongThi] p on pc.phongthiid = p.id
                           left join [Nuce_thi_chung_chi].[dbo].[NuceThi_CaThi] c on pc.cathiid = c.id
+
                           where pc.id = {idPhongCaNgay}";
             DataTable dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
             string NgayThi = dt.Rows[0]["NgayThiFormatted"]?.ToString();
@@ -46,7 +49,9 @@ namespace nuce.web
             sql = $@"SELECT nt.ma, kls.made, kls.bailam, kls.KiThi_LopHoc_SinhVienID
                     FROM [Nuce_thi_chung_chi].[dbo].[NuceThi_KiThi_LopHoc_SinhVien] kls
                     left join Nuce_thichungchi_nguoithi nt on kls.sinhvienid = nt.id
-                    where kls.phongthi_cathi_id = {idPhongCaNgay} and kls.[KiThi_LopHocID] = {idKiThi}";
+                    left join nucethi_kithi kt on kt.KiThiID = kls.KiThi_LopHocID
+                    left join nucethi_bode bd on kt.BoDeID = bd.BoDeID
+                    where kls.phongthi_cathi_id = {idPhongCaNgay} and kls.[KiThi_LopHocID] = {idKiThi} and bd.LoaiDe = {loaiDe}";
             dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
 
             if (dt.Rows.Count == 0)
@@ -70,8 +75,11 @@ namespace nuce.web
                 string BaiLam = row["bailam"]?.ToString();
                 string MaBaiLam = row["KiThi_LopHoc_SinhVienID"]?.ToString();
 
-                BaiLam = Path.Combine(UploadsFolder, BaiLam);
-                dirs.Add(BaiLam);
+                if (!string.IsNullOrEmpty(BaiLam))
+                {
+                    BaiLam = Path.Combine(UploadsFolder, BaiLam);
+                    dirs.Add(BaiLam);
+                }
 
                 ThiSinhMaDe.Add(MaThiSinh, MaDe);
                 ThiSinhMaBaiLam.Add(MaThiSinh, MaBaiLam);
@@ -134,13 +142,13 @@ namespace nuce.web
             catch (Exception ex)
             {
                 Response.ContentType = "text/plain";
-                Response.Write(ex.Message);
+                Response.Write(ex.Message + "\n " + String.Join(",", dirs));
                 return;
             }
             
             Response.Clear();
             Response.Buffer = true;
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            //Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             Response.AddHeader("content-disposition", $"attachment; filename={PhongThi}-{CaThi}-{NgayThi}.zip");
             Response.WriteFile(zipname);
             Response.Flush();

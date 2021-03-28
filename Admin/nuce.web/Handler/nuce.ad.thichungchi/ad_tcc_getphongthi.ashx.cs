@@ -19,8 +19,9 @@ namespace nuce.web.Handler.nuce.ad.thichungchi
 
         public override void WriteData(HttpContext context)
         {
+            string id = context.Request.QueryString["ID"] ?? "-1";
             context.Response.ContentType = "text/plain";
-            string sql = "select * from [NuceThi_PhongThi]";
+            string sql = $"select * from [NuceThi_PhongThi] where status = 1 and ({id} = -1 or id = {id})";
             DataTable dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
             context.Response.Write(DataTableToJSONWithJavaScriptSerializer(dt));
         }
