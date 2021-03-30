@@ -46,7 +46,8 @@ namespace nuce.web
             string CaThi = dt.Rows[0]["CaThi"]?.ToString();
             #endregion
 
-            sql = $@"SELECT nt.ma, kls.made, kls.bailam, kls.KiThi_LopHoc_SinhVienID
+            sql = $@"SELECT nt.ma, nt.Ho + ' ' + nt.Ten as HoTen, nt.CMT, nt.NoiSinh, convert(varchar, nt.ngaysinh, 103) as NgaySinh, nt.Mobile,
+                            kls.made, kls.bailam, kls.KiThi_LopHoc_SinhVienID
                     FROM [Nuce_thi_chung_chi].[dbo].[NuceThi_KiThi_LopHoc_SinhVien] kls
                     left join Nuce_thichungchi_nguoithi nt on kls.sinhvienid = nt.id
                     left join nucethi_kithi kt on kt.KiThiID = kls.KiThi_LopHocID
@@ -66,6 +67,7 @@ namespace nuce.web
             Dictionary<string, string> ThiSinhMaDe = new Dictionary<string, string>();
             Dictionary<string, string> ThiSinhHash = new Dictionary<string, string>();
             Dictionary<string, string> ThiSinhMaBaiLam = new Dictionary<string, string>();
+            Dictionary<string, ThiSinh> ThiSinhInfo = new Dictionary<string, ThiSinh>();
             // Bai Lam
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -74,6 +76,21 @@ namespace nuce.web
                 string MaDe = row["made"]?.ToString();
                 string BaiLam = row["bailam"]?.ToString();
                 string MaBaiLam = row["KiThi_LopHoc_SinhVienID"]?.ToString();
+                string HoTen = row["HoTen"]?.ToString();
+                string NgaySinh = row["NgaySinh"]?.ToString();
+                string NoiSinh = row["NoiSinh"]?.ToString();
+                string Mobile = row["Mobile"]?.ToString();
+                string Cmt = row["CMT"]?.ToString();
+
+                var tmpThiSinh = new ThiSinh()
+                {
+                    Ma = MaThiSinh,
+                    HoTen = HoTen,
+                    NgaySinh = NgaySinh,
+                    NoiSinh = NoiSinh,
+                    CMT = Cmt,
+                    Mobile = Mobile,
+                };
 
                 if (!string.IsNullOrEmpty(BaiLam))
                 {
@@ -83,6 +100,7 @@ namespace nuce.web
 
                 ThiSinhMaDe.Add(MaThiSinh, MaDe);
                 ThiSinhMaBaiLam.Add(MaThiSinh, MaBaiLam);
+                ThiSinhInfo.Add(MaThiSinh, tmpThiSinh);
             }
             // File Thi sinh ma de
             string DanhSachMaDeThiSinhFileName = Path.Combine(UploadsFolder, $"DanhSachThiSinhMaDe-{Guid.NewGuid()}.xlsx");
@@ -91,8 +109,7 @@ namespace nuce.web
             {
                 IXLWorksheet ws = wb.Worksheets.Add("DanhSachThiSinhMaDe");
                 ws.Cell(1, 1).Value = "Mã";
-                ws.Cell(1, 2).Value = "Mã thí sinh";
-                ws.Cell(1, 3).Value = "Mã đề";
+                ws.Cell(1, 2).Value = "Mã đề";
                 int i = 1;
                 foreach (var item in ThiSinhMaDe)
                 {
@@ -100,9 +117,7 @@ namespace nuce.web
                     string MaBaiLam = ThiSinhMaBaiLam[item.Key];
                     var cryptCode = StringCipher.Encrypt(MaBaiLam, CryptKey);
                     ws.Cell(i, 1).Value = cryptCode;
-                    ws.Cell(i, 2).Value = $"'{item.Key}";
-                    ws.Cell(i, 2).SetDataType(XLCellValues.Text);
-                    ws.Cell(i, 3).Value = item.Value;
+                    ws.Cell(i, 2).Value = item.Value;
                     ThiSinhHash.Add(item.Key, cryptCode);
                 }
                 wb.SaveAs(DanhSachMaDeThiSinhFileName);
@@ -116,7 +131,13 @@ namespace nuce.web
                 IXLWorksheet ws = wb.Worksheets.Add("MaHoa");
                 ws.Cell(1, 1).Value = "Mã";
                 ws.Cell(1, 2).Value = "Mã đề";
-                ws.Cell(1, 3).Value = "Điểm";
+                ws.Cell(1, 3).Value = "Mã thí sinh";
+                ws.Cell(1, 4).Value = "Họ tên";
+                ws.Cell(1, 5).Value = "Ngày sinh";
+                ws.Cell(1, 6).Value = "Nơi sinh";
+                ws.Cell(1, 7).Value = "CMND";
+                ws.Cell(1, 8).Value = "SĐT";
+                ws.Cell(1, 9).Value = "Điểm";
                 int i = 1;
                 foreach (var item in ThiSinhHash)
                 {
@@ -125,6 +146,12 @@ namespace nuce.web
                     ws.Cell(i, 1).Value = item.Value;
                     ws.Cell(i, 2).Value = made;
                     ws.Cell(i, 2).SetDataType(XLCellValues.Text);
+                    ws.Cell(i, 3).Value = $"'{item.Key}";
+                    ws.Cell(i, 4).Value = ThiSinhInfo[item.Key].HoTen;
+                    ws.Cell(i, 5).Value = ThiSinhInfo[item.Key].NgaySinh;
+                    ws.Cell(i, 6).Value = ThiSinhInfo[item.Key].NoiSinh;
+                    ws.Cell(i, 7).Value = ThiSinhInfo[item.Key].CMT;
+                    ws.Cell(i, 8).Value = ThiSinhInfo[item.Key].Mobile;
                 }
                 wb.SaveAs(DanhSachThiSinhFileName);
             }

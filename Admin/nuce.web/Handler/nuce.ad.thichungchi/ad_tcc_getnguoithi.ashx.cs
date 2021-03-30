@@ -17,11 +17,13 @@ namespace nuce.web.commons
             context.Response.ContentType = "text/plain";
             string search = context.Request["search"].ToString();
             string danhmuc = context.Request["danhmuc"].ToString();
+            string ngaysinh = context.Request["ngaysinh"].ToString();
             string sql = string.Format(@"select top 100 a.*,CONVERT(VARCHAR(10), NgaySinh, 103) as NgaySinhVN,b.Ten as DanhMuc from [dbo].[NUCE_ThiChungChi_NguoiThi] a
                left join Nuce_ThiChungChi_DanhMuc b on a.DanhMucID=b.ID 
-                where (CMT like N'%{0}%' or a.Ma like N'%{0}%' or a.Ten like N'%{0}%' or a.Ho like N'%{0}%' or a.Mobile like '%{0}%') and  
-                        a.Status<>4 and (a.DanhMucID ={1} or {1}=-1)
-                order by [UpdatedDate] desc", search,danhmuc);
+                where (CMT like N'%{0}%' or a.Ma like N'%{0}%' or (a.Ho + ' ' + a.Ten) like N'%{0}%' or a.Mobile like '%{0}%') and  
+                        a.Status<>4 and (a.DanhMucID ={1} or {1}=-1) and
+                        ('{2}' = '' or convert(datetime, '{2}', 103) = cast(floor(cast(ngaysinh as float)) as datetime))
+                order by [UpdatedDate] desc", search,danhmuc, ngaysinh);
             DataTable dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
             context.Response.Write(DataTableToJSONWithJavaScriptSerializer(dt));
             HttpContext.Current.Response.Flush(); // Sends all currently buffered output to the client.

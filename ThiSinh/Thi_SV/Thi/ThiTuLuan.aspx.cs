@@ -22,15 +22,17 @@ namespace Thi_SV.Thi
                 int IDBaiThi = Convert.ToInt32(Request.QueryString["kithilophocsinhvien"]);
                 var dt = dnn_NuceThi_KiThi_LopHoc_SinhVien.get(IDBaiThi);
                 int Status =  int.Parse(dt.Rows[0]["status"]?.ToString());
+                DateTime now = DateTime.Now;
                 DateTime NgayGioNopBai = dt.Rows[0].IsNull("NgayGioNopBai") ? DateTime.Now : DateTime.Parse(dt.Rows[0]["NgayGioNopBai"].ToString());
 
-                if (Status > 3 || DateTime.Now > NgayGioNopBai)
+                if (Status > 3 || now > NgayGioNopBai)
                 {
                     Response.Redirect("/thi/DanhSachKiThi");
                     return;
                 }
+                var totalTime = (NgayGioNopBai - now).TotalSeconds;
 
-                scrRun.InnerHtml = $"<script>ThiTuLuan.ID = {IDBaiThi}</script>";
+                scrRun.InnerHtml = $"<script>ThiTuLuan.ID = {IDBaiThi};TimeThiTuLuan.init({totalTime});</script>";
             }
         }
     }

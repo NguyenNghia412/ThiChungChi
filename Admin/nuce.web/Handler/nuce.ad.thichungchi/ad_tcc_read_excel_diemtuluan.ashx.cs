@@ -56,7 +56,7 @@ namespace nuce.web.Handler.nuce.ad.thichungchi
                         }
                         else
                         {
-                            string Diem = row.Cell(3).Value.ToString();
+                            string Diem = row.Cell(9).Value.ToString();
                             string EncryptedCode = row.Cell(1).Value.ToString();
                             string MaBaiLam = StringCipher.Decrypt(EncryptedCode, CryptKey);
                             sql += $@"update [NuceThi_KiThi_LopHoc_SinhVien]

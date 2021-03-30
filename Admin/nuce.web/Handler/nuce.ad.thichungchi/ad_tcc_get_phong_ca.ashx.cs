@@ -24,7 +24,7 @@ namespace nuce.web.Handler.nuce.ad.thichungchi
                           from [NuceThi_PhongThi_CaThi] pc
                           left join [Nuce_thi_chung_chi].[dbo].[NuceThi_PhongThi] p on pc.phongthiid = p.id
                           left join [Nuce_thi_chung_chi].[dbo].[NuceThi_CaThi] c on pc.cathiid = c.id
-                          where pc.kithiid = {idKiThi}";
+                          where pc.kithiid = {idKiThi} and p.status = 1";
             DataTable dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
             context.Response.Write(DataTableToJSONWithJavaScriptSerializer(dt));
         }

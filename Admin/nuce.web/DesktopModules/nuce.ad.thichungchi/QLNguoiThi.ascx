@@ -14,8 +14,11 @@
 <span id="spThongBao" runat="server"></span>
 <span id="spThamSo" runat="server"></span>
 <div class="row" style="padding-top: 5px;">
-    <div class="col-sm-6">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <div class="col-sm-4">
+        <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm..">
+    </div>
+    <div class="col-sm-2">
+        <input class="form-control" id="txtSearchNgaySinh" type="text" placeholder="Ngày sinh.." onblur="QuanLyNguoiThi.changeSearchNgaySinh()">
     </div>
     <div class="col-sm-3">
         <select class="form-control" id="slDanhMucSearch" style="width: 200px;" onchange='QuanLyNguoiThi.changeSlDanhMucSearch(this.value)'>
@@ -378,6 +381,8 @@
     <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
      <asp:TextBox ID="txtLinkUpload" runat="server"></asp:TextBox>
 </div>
+<link rel="stylesheet" href="/Scripts/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker.min.css" />
+<script src="/Scripts/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     (function ($) {
         $.fn.serializeAny = function () {
@@ -395,7 +400,15 @@
         Data: [],
         saveExcelData: [],
         DataDanhMuc: [],
+        DatePickerID: ['txtSearchNgaySinh'],
         url: "/handler/nuce.ad.thichungchi/",
+        initDatePicker() {
+            this.DatePickerID.forEach(id => {
+                $(`#${id}`).datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+            });
+        },
         resetMatKhau: function () {
             $.getJSON(this.url + "ad_tcc_resetmatkhau.ashx?ID=" + QuanLyNguoiThi.ID, function (data) {
                 if (data == 1) {
@@ -436,17 +449,21 @@
                 //$("#" + strCtl + "slDanhMuc").html(strHtml);
                 $("#slDanhMucSearch").html(strHtmlSearch);
             });
-            QuanLyNguoiThi.bindData('', '-1');
+            QuanLyNguoiThi.bindData('', '-1', '');
+            QuanLyNguoiThi.initDatePicker();
         },
         changeSlDanhMucSearch: function (giatri) {
             QuanLyNguoiThi.bindData($('#myInput').val(), giatri);
         },
-        bindData1: function () {
-            QuanLyNguoiThi.bindData($('#myInput').val(), $('#slDanhMucSearch').val());
+        changeSearchNgaySinh: function () {
+            QuanLyNguoiThi.bindData1();
         },
-        bindData: function (text, giatridanhmuc) {
+        bindData1: function () {
+            QuanLyNguoiThi.bindData($('#myInput').val(), $('#slDanhMucSearch').val(), $('#txtSearchNgaySinh').val());
+        },
+        bindData: function (text, giatridanhmuc, ngaySinh) {
             $('#tbContent').html("");
-            $.getJSON(this.url + "ad_tcc_getnguoithi.ashx?search=" + text + "&&danhmuc=" + giatridanhmuc + "&&nocache='" + (new Date()).getTime(), function (data) {
+            $.getJSON(this.url + "ad_tcc_getnguoithi.ashx?search=" + text + "&&danhmuc=" + giatridanhmuc + "&&ngaysinh="+ ngaySinh + "&&nocache='" + (new Date()).getTime(), function (data) {
                 //alert(data);
                 QuanLyNguoiThi.Data = data;
                 var strHtml = "";

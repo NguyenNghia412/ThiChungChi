@@ -59,7 +59,19 @@
         <div class="row justify-content-center mx-0">
             <div class="col-sm-12 col-md-5">
                 <div class="border rounded p-5">
-                    <h3 class="text-danger" style="text-align: center; font-weight: bold;">Tự luận</h3>
+                    <div class="justify-content-between">
+                        <div>
+                            <h3 class="text-primary" style="text-align: center; font-weight: bold;">Tự luận</h3>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3 style="text-align: center; font-weight: bold; color: rgb(255, 0, 0);">
+                                <span id="spMinutes"></span>
+                                <span style="font-weight: bold;">Phút : </span>
+                                <span id="spSeconds"></span>
+                                <span style="font-weight: bold;">Giây </span>
+                            </h3>
+                        </div>
+                    </div>
                     <h5 id="announcement" class="text-primary" style="text-align: center"></h5>
                     <div class="mt-4 row">
                         <input type="file" name="choose-file-btn" id="btn-choose-file"/>
@@ -104,6 +116,43 @@
             },
             roiPhong: function () {
                 window.location.href = "/Thi/DanhSachKiThi"
+            },
+        };
+        let TimeThiTuLuan = {
+            totalTime: 0,
+            init: function (total) {
+                this.totalTime = total;
+                const minutes = Math.floor(this.totalTime / 60);
+                const seconds = Math.floor(this.totalTime - (minutes * 60));
+                //const seconds = this.totalTime % 60;
+                //const minutes = (this.totalTime - seconds) / 60;
+                
+                $('#spMinutes').html(minutes);
+                $('#spSeconds').html(seconds);
+                setTimeout(() => {
+                    TimeThiTuLuan.updateTime();
+                }, 1000);
+            },
+            updateTime: function() {
+                this.totalTime -= 1;
+                if (this.totalTime > -1) {
+                    //const seconds = this.totalTime % 60;
+                    //const minutes = (this.totalTime - seconds) / 60;
+                    const minutes = Math.floor(this.totalTime / 60);
+                    const seconds = Math.floor(this.totalTime - (minutes * 60));
+                    $('#spMinutes').html(minutes);
+                    $('#spSeconds').html(seconds);
+                    setTimeout(() => {
+                        TimeThiTuLuan.updateTime();
+                    }, 1000);
+                    //if ((totalTime + 10) % 300 == 0) {
+                    //    window.setTimeout("doPostBackAnswares2();", 5000);
+                    //}
+                }
+                else {
+                    //doPostBackAnswares();
+                    //location.reload(true);
+                }
             },
         };
     </script>

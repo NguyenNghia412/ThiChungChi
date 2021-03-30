@@ -19,4 +19,16 @@ namespace nuce.web.model
         public int PhutBatDau { get; set; }
         public int PhutKetThuc { get; set; }
     }
+
+    public class ThiSinh
+    {
+        public int Id { get; set; }
+        public string Ma { get; set; }
+        public string HoTen { get; set; }
+        public string NgaySinh { get; set; }
+        public string NoiSinh { get; set; }
+
+        public string CMT { get; set; }
+        public string Mobile { get; set; }
+    }
 }

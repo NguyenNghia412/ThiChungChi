@@ -423,14 +423,14 @@
                         count++;
                         strHtml += "<td>" + count + "</td>";
                         strHtml += "<td>" + item.Ten + "</td>";
-                        strHtml += `<td><div class="panel-body">
-                                        <div style="color: rgb(255, 0, 0); text-align: center; font-size: 30px; width: 100%;">
-                                            <span id="spMinutes"></span>
-                                            <span style="font-weight: bold;">Phút : </span>
-                                            <span id="spSeconds"></span>
-                                            <span style="font-weight: bold;">Giây </span>
-                                        </div>
-                                    </div></td>`;
+                        //strHtml += `<td><div class="panel-body">
+                        //                <div style="color: rgb(255, 0, 0); text-align: center; font-size: 30px; width: 100%;">
+                        //                    <span id="spMinutes"></span>
+                        //                    <span style="font-weight: bold;">Phút : </span>
+                        //                    <span id="spSeconds"></span>
+                        //                    <span style="font-weight: bold;">Giây </span>
+                        //                </div>
+                        //            </div></td>`;
                     } else {
                         strHtml += "<td></td><td></td>";
                     }
@@ -482,6 +482,7 @@
             $.each(QuanLyKyThi.Data, function (i, item) {
                 if (item.KiThiID == id) {
                     $("#slBoDe").val(item.BoDeID);
+                    $('#slBoDe').selectpicker('refresh');
                     $("#Ten").val(item.Ten);
                     $("#MoTa").val(item.MoTa);
                     $("#PhongThi").val(item.PhongThi);
