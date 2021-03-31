@@ -18,7 +18,7 @@
         <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm..">
     </div>
     <div class="col-sm-2">
-        <input class="form-control" id="txtSearchNgaySinh" type="text" placeholder="Ngày sinh.." onblur="QuanLyNguoiThi.changeSearchNgaySinh()">
+        <input class="form-control" id="txtSearchNgaySinh" type="text" placeholder="Ngày sinh..">
     </div>
     <div class="col-sm-3">
         <select class="form-control" id="slDanhMucSearch" style="width: 200px;" onchange='QuanLyNguoiThi.changeSlDanhMucSearch(this.value)'>
@@ -407,6 +407,15 @@
                 $(`#${id}`).datepicker({
                     format: 'dd/mm/yyyy'
                 });
+            });
+            this.setSearchNgaySinhEvent();
+        },
+        setSearchNgaySinhEvent: function() {
+            $(`#txtSearchNgaySinh`).keyup(event => {
+                console.log(event);
+                if (event.keyCode === 13) {
+                    QuanLyNguoiThi.bindData1();
+                }
             });
         },
         resetMatKhau: function () {

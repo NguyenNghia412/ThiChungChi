@@ -301,12 +301,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <div class="btn-group" style="border: 1px; padding-bottom: 5px;">
-                    <button type="button" class="btn btn-default">Nộp bài thi</button>
-                    <button type="button" class="btn btn-default">Thi lại</button>
-                    <button type="button" class="btn btn-default" onclick="QuanLyKyThi.TaiDanhSachLop();">Tải danh sách lớp</button>
-                    <button type="button" class="btn btn-default"  onclick="QuanLyKyThi.TaiDanhSachDiem();">Tải danh sách điểm</button>
-                    <button type="button" class="btn btn-default" onclick="QuanLyKyThi.TaiPhieuDiem();">Tải phiếu điểm</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="btn-group" style="border: 1px; padding-bottom: 5px;">
+                            <button type="button" class="btn btn-default">Nộp bài thi</button>
+                            <button type="button" class="btn btn-default">Thi lại</button>
+                            <button type="button" class="btn btn-default" onclick="QuanLyKyThi.TaiDanhSachLop();">Tải danh sách lớp</button>
+                            <button type="button" class="btn btn-default"  onclick="QuanLyKyThi.TaiDanhSachDiem();">Tải danh sách điểm</button>
+                            <button type="button" class="btn btn-default" onclick="QuanLyKyThi.TaiPhieuDiem();">Tải phiếu điểm</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input class="form-control" id="txtSearchKiThiThiSinh" type="text" placeholder="Tìm kiếm..">
+                    </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -361,6 +368,15 @@
                 $(`#${id}`).datepicker({
                     format: 'dd/mm/yyyy'
                 });
+            });
+            QuanLyKyThi.setSearchThiSinhKiThiEvent();
+        },
+        setSearchThiSinhKiThiEvent: function () {
+            $(`#txtSearchKiThiThiSinh`).keyup(event => {
+                if (event.keyCode === 13) {
+                    console.log('hihihi');
+                    QuanLyKyThi.TheoDoiKiThi_searchDanhSachThiSinh();
+                }
             });
         },
         initData: function () {
@@ -584,6 +600,7 @@
             });
             var search2 = $('#myInput2').val();
             var danhmuc2 = $("#slDanhMucSearch2").val();
+            const searchText = $(`#txtSearchKiThiThiSinh`).val();
             $.getJSON(this.url + "ad_tcc_getnguoithitrongkithi.ashx?Type=1&&ID=" + QuanLyKyThi.ID + "&&search=" + search2 + "&&danhmuc=" + danhmuc2 + "&&IDPhongCaNgay=" + phongCaNgay, function (data) {
                 var strHtml = "";
                 var count = 1;
@@ -657,7 +674,9 @@
         },
         TheoDoiKiThi_searchDanhSachThiSinh: function () {
             //Load danh sach thi sinh du thi
-            $.getJSON(this.url + "ad_tcc_getnguoithitrongkithi.ashx?Type=2&&ID=" + QuanLyKyThi.ID + "&&search= &&DanhMuc=-1", function (data) {
+            const searchText = $(`#txtSearchKiThiThiSinh`).val();
+            console.log('sss: ', searchText, $(`#txtSearchKiThiThiSinh`).val());
+            $.getJSON(this.url + "ad_tcc_getnguoithitrongkithi.ashx?Type=2&&ID=" + QuanLyKyThi.ID + "&&search=" + searchText +"&&DanhMuc=-1&&", function (data) {
                 var strHtml = "";
                 var count = 1;
                 $.each(data, function (i, item) {

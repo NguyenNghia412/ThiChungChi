@@ -42,13 +42,22 @@ namespace Thi_SV
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMenuCauHoi;
 
         /// <summary>
-        /// divContent control.
+        /// spanThoiGianNopBai control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanThoiGianNopBai;
+
+        /// <summary>
+        /// spanDiemThi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanDiemThi;
 
         /// <summary>
         /// divProcessData control.

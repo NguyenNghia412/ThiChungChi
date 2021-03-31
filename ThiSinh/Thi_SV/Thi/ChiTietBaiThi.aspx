@@ -9,9 +9,21 @@
         </div>
     </div>
     <div class="content-frame">
-        <div style="width: 100%;" runat="server" id="divContent">
+        <div>
+            <p>
+                <span style="font-weight: bold;">Thời gian nộp bài: </span>
+                <span id="spanThoiGianNopBai" class="text-primary" runat="server"></span>
+            </p>
         </div>
-        <div style="padding-bottom:200px; padding-top:50px;  color: red;">
+        <div>
+            <p>
+                <span style="font-weight: bold;">Điểm thi: </span>
+                <span id="spanDiemThi" class="text-primary" runat="server"></span>
+            </p>
+        </div>
+        <%--<div style="width: 100%;" runat="server" id="divContent">
+        </div>--%>
+        <%--<div style="padding-bottom:200px; padding-top:50px;  color: red;">
             <table>
                 <tr">
                     <td width="200px">Chữ ký giám thị 1</td>
@@ -19,7 +31,7 @@
                     <td>Chữ ký thí sinh</td>
                 </tr>
             </table>
-        </div>
+        </div>--%>
         <div style="color: red; cursor: pointer;" onclick="javascript:window.history.back();">Quay trở lại</div>
     </div>
     <div id="divProcessData" runat="server"></div>

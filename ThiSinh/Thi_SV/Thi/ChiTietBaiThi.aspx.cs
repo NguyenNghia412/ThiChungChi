@@ -92,8 +92,7 @@ namespace Thi_SV
                 {
                     divMenu.Visible = false;
                     writeLog("Canh Bao", "Ket qua thi voi ma de " + KiThiLopHocSinhVien.MaDe + " là: " + KiThiLopHocSinhVien.Mota);
-                    //divContent.InnerHtml = string.Format("<div style='width: 80%;text-align: center;font-weight: bold;font-size: 20px;color: red;padding-top: 20px;'>{0}</div>", KiThiLopHocSinhVien.Mota);
-                    divContent.InnerHtml = KiThiLopHocSinhVien.Mota;
+                    //divContent.InnerHtml = KiThiLopHocSinhVien.Mota;
                 }
                 else
                 {
@@ -148,10 +147,11 @@ namespace Thi_SV
 
                     divMenuCauHoi.InnerHtml = strHtmlMenuCauHoi;
                     string strOutScript = "";
-                    divContent.InnerHtml = getHtmlDeThi(KiThiLopHocSinhVien, out strOutScript);
-                    //strScript += strOutScript;
+                    //divContent.InnerHtml = getHtmlDeThi(KiThiLopHocSinhVien, out strOutScript);
                     divProcessData.InnerHtml = string.Format("<script>{0}</script>", strOutScript);
                     m_KiThiLopHocSinhVien = KiThiLopHocSinhVien;
+                    spanThoiGianNopBai.InnerHtml = "";
+                    spanDiemThi.InnerHtml = m_KiThiLopHocSinhVien.Diem.ToString();
                     //divContent.InnerHtml = KiThiLopHocSinhVien.MaDe + "---" + KiThiLopHocSinhVien.NoiDungDeThi + "---" + KiThiLopHocSinhVien.DapAn;
                 }
                 strScript += "</script>";
