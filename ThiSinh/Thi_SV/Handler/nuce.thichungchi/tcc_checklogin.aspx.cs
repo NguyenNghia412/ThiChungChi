@@ -78,6 +78,7 @@ namespace nuce.web.sinhvien
                     }
                     #endregion
                     strData = "1";
+                    dnn_NuceThi_Log.insertLog(SinhVien.SinhVienID, "Đăng nhập", "");
                 }
             }
             catch (Exception ex)

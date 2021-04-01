@@ -24,8 +24,8 @@ namespace nuce.web.data
         public static void updateMoTa(int iID,  string mota)
         {
             SqlParameter[] param = {
-                new SqlParameter("@iID", iID),
-                new SqlParameter("@mota", mota),
+                new SqlParameter("@KiThi_LopHoc_SinhVienID", iID),
+                new SqlParameter("@Mota", mota),
             };
             Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteNonQuery(Nuce_ThiChungChi.ConnectionString, CommandType.StoredProcedure, "NuceThi_KiThi_LopHoc_SinhVien_update_mota", param);
             //DotNetNuke.Data.DataProvider.Instance().ExecuteNonQuery("NuceThi_KiThi_LopHoc_SinhVien_update_mota", iID, mota);

@@ -11,4 +11,10 @@ namespace nuce.web.model
         TracNghiem = 1,
         TuLuan = 2,
     }
+
+    public enum LoaiLog
+    {
+        Normal = 1,
+        Thi = 2,
+    }
 }

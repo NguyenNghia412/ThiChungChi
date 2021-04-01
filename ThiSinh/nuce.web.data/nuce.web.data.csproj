@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dnn_NuceThi_Log.cs" />
     <Compile Include="dnn_Nuce_KS_DiemThi1.cs" />
     <Compile Include="dnn_NuceQLPM_Log_Syn1.cs" />
     <Compile Include="dnn_Nuce_KS_SinhVienRaTruong_TongHop.cs" />

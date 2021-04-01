@@ -26,6 +26,12 @@ namespace nuce.web.model
         public int status { get; set; }
     }
 
+    //public class InsertLogModel
+    //{
+    //    public int nguoiThiId { get; set; }
+    //    public int  { get; set; }
+    //}
+
     public class TemporaryTimeModel
     {
         public int KiThiID { get; set; }

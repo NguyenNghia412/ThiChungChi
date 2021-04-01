@@ -1,9 +1,11 @@
 ﻿using nuce.web.data;
+using nuce.web.model;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web.Script.Serialization;
 using System.Web.UI;
+using Thi_SV;
 
 namespace nuce.web.sinhvien
 {
@@ -15,8 +17,10 @@ namespace nuce.web.sinhvien
             string strData = "-1";
             try
             {
+                var nguoiThi = (SinhVien)Session[Utils.session_sinhvien];
+                dnn_NuceThi_Log.insertLog(nguoiThi.SinhVienID, "Đăng xuất", "");
                 Session.RemoveAll();
-                    strData = "1";
+                strData = "1";
             }
             catch (Exception ex)
             {

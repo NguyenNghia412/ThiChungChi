@@ -375,6 +375,7 @@
                         console.log("Could not connect!");
                     });
                 window.onbeforeunload = function (e) {
+                    Thi.UpdateStatus();
                     examHub.connection.stop();
                 };
             },

@@ -65,6 +65,7 @@ namespace nuce.web.sinhvien.ThiChungChi
                                 strData = KiThiLopHocSinhVien.Mota;
                                 data.dnn_NuceThi_KiThi_LopHoc_SinhVien.update_bailam1(kithilophocsinhvien, bailam, KiThiLopHocSinhVien.Diem, KiThiLopHocSinhVien.NgayGioBatDau, DateTime.Now, iTongThoiGianConLai, Utils.GetIPAddress(), KiThiLopHocSinhVien.Status);
                                 data.dnn_NuceThi_KiThi_LopHoc_SinhVien.updateMoTa(kithilophocsinhvien, strData);
+                                data.dnn_NuceThi_KiThi_LopHoc_SinhVien.updateStatus(kithilophocsinhvien, KiThiLopHocSinhVien.Status);
                             }
                             else
                             {
@@ -73,6 +74,7 @@ namespace nuce.web.sinhvien.ThiChungChi
                                     KiThiLopHocSinhVien.Status = 2;
                                 }
                                 data.dnn_NuceThi_KiThi_LopHoc_SinhVien.update_bailam(kithilophocsinhvien, bailam, KiThiLopHocSinhVien.NgayGioBatDau, DateTime.Now, iTongThoiGianConLai, Utils.GetIPAddress(), KiThiLopHocSinhVien.Status);
+                                data.dnn_NuceThi_KiThi_LopHoc_SinhVien.updateStatus(kithilophocsinhvien, KiThiLopHocSinhVien.Status);
                                 strData = "1";
                             }
                             KiThiLopHocSinhVien.NgayGioBatDau = dtNopBai;
