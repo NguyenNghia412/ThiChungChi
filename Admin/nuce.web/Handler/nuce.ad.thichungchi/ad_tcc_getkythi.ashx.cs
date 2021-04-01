@@ -16,7 +16,26 @@ namespace nuce.web.commons
            // DataSet ds = data.dnn_NuceCommon_Khoa.getName(-1).DataSet;
             context.Response.ContentType = "text/plain";
             string search = context.Request["search"].ToString();
-            string sql = string.Format(@"SELECT top 30 a.*,b.Ten as TenBoDe, b.LoaiDe, b.TuLuan_ThoiGianNopTruoc  FROM [dbo].[NuceThi_KiThi] a inner join [dbo].[NuceThi_BoDe] b on a.BoDeID = b.[BoDeID] where a.Status <> 4 order by UpdatedDate desc");
+            string sql = string.Format($@"
+                                        declare @now datetime = getdate();  
+                                        SELECT top 30 a.*,
+			                            b.Ten as TenBoDe, b.LoaiDe, b.TuLuan_ThoiGianNopTruoc, b.ThoiGianThi, b.LoaiDe, 
+                                        b.TuLuan_ThoiGianNopTruoc,
+			                            kls.NgayGioBatDau, kls.NgayGioNopBai,
+                                        datediff(ss, @now, kls.NgayGioNopBai) as ThoiGianConLai,
+                                        case 
+				                            when a.Status < 4 and @now < kls.NgayGioNopBai 
+				                            then 1 else 0 
+			                            end as isShowThoiGianConLai
+                                FROM [dbo].[NuceThi_KiThi] a 
+                                inner join [dbo].[NuceThi_BoDe] b on a.BoDeID = b.[BoDeID] 
+                                left join (
+	                                select kls.KiThi_LopHocID, min(kls.KiThi_LopHoc_SinhVienID) as ID
+	                                from nucethi_kithi_lophoc_sinhvien kls
+	                                group by kls.KiThi_LopHocID
+                                ) GroupKLS on a.KiThiID = GroupKLS.KiThi_LopHocID
+                                left join nucethi_kithi_lophoc_sinhvien kls on GroupKLS.ID = kls.KiThi_LopHoc_SinhVienID
+                                where a.Status <> 4 order by UpdatedDate desc");
             DataTable dt = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(Nuce_ThiChungChi.ConnectionString, CommandType.Text, sql).Tables[0];
             context.Response.Write(DataTableToJSONWithJavaScriptSerializer(dt));
             HttpContext.Current.Response.Flush(); // Sends all currently buffered output to the client.

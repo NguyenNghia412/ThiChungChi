@@ -9,18 +9,29 @@
         </div>
     </div>
     <div class="content-frame">
-        <div>
-            <p>
-                <span style="font-weight: bold;">Thời gian nộp bài: </span>
-                <span id="spanThoiGianNopBai" class="text-primary" runat="server"></span>
-            </p>
-        </div>
-        <div>
-            <p>
-                <span style="font-weight: bold;">Điểm thi: </span>
-                <span id="spanDiemThi" class="text-primary" runat="server"></span>
-            </p>
-        </div>
+         <table>
+                <tr>
+                    <td style="padding: 3px;">
+                        <span style="font-weight: bold;">Thời gian nộp bài: </span>
+                    </td>
+                    <td style="padding: 3px;">
+                        <span id="spanThoiGianNopBai" class="text-primary" runat="server"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 3px;">
+                        <span style="font-weight: bold;">Điểm thi: </span>
+                    </td>
+                    <td style="padding: 3px;">
+                        <span id="spanDiemThi" class="text-primary" runat="server"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 3px;">
+                        <div style="color: red; cursor: pointer;" onclick="javascript:window.history.back();">Quay trở lại</div>
+                    </td>
+                </tr>
+            </table>
         <%--<div style="width: 100%;" runat="server" id="divContent">
         </div>--%>
         <%--<div style="padding-bottom:200px; padding-top:50px;  color: red;">
@@ -32,7 +43,7 @@
                 </tr>
             </table>
         </div>--%>
-        <div style="color: red; cursor: pointer;" onclick="javascript:window.history.back();">Quay trở lại</div>
+        <%--<div style="color: red; cursor: pointer;" onclick="javascript:window.history.back();">Quay trở lại</div>--%>
     </div>
     <div id="divProcessData" runat="server"></div>
     <script>

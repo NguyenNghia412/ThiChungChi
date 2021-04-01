@@ -150,7 +150,7 @@ namespace Thi_SV
                     //divContent.InnerHtml = getHtmlDeThi(KiThiLopHocSinhVien, out strOutScript);
                     divProcessData.InnerHtml = string.Format("<script>{0}</script>", strOutScript);
                     m_KiThiLopHocSinhVien = KiThiLopHocSinhVien;
-                    spanThoiGianNopBai.InnerHtml = "";
+                    spanThoiGianNopBai.InnerHtml = KiThiLopHocSinhVien.NgayGioNopBai.ToString("dd/MM/yyyy HH:mm");
                     spanDiemThi.InnerHtml = m_KiThiLopHocSinhVien.Diem.ToString();
                     //divContent.InnerHtml = KiThiLopHocSinhVien.MaDe + "---" + KiThiLopHocSinhVien.NoiDungDeThi + "---" + KiThiLopHocSinhVien.DapAn;
                 }

@@ -439,18 +439,24 @@
                         count++;
                         strHtml += "<td>" + count + "</td>";
                         strHtml += "<td>" + item.Ten + "</td>";
-                        //strHtml += `<td><div class="panel-body">
-                        //                <div style="color: rgb(255, 0, 0); text-align: center; font-size: 30px; width: 100%;">
-                        //                    <span id="spMinutes"></span>
-                        //                    <span style="font-weight: bold;">Phút : </span>
-                        //                    <span id="spSeconds"></span>
-                        //                    <span style="font-weight: bold;">Giây </span>
-                        //                </div>
-                        //            </div></td>`;
                     } else {
                         strHtml += "<td></td><td></td>";
                     }
-                    strHtml += "<td>" + item.TenBoDe + "</td>";
+                    strHtml += "<td><div>" + item.TenBoDe + "</div>";
+                    if (item.LoaiDe === 2 && item.isShowThoiGianConLai) {
+                        const minuteId = `spMinutes-${item.KiThiID}`;
+                        const secondId = `spMispSeconds-${item.KiThiID}`;
+                        strHtml += `<div>
+                                        <div style="color: rgb(255, 0, 0); text-align: left;">
+                                            <span id="${minuteId}"></span>
+                                            <span style="font-weight: bold;">Phút : </span>
+                                            <span id="${secondId}"></span>
+                                            <span style="font-weight: bold;">Giây </span>
+                                        </div>
+                                    </div>`;
+                        Timer.push(minuteId, secondId, item.ThoiGianConLai);
+                    }
+                    strHtml += "</td>";
                     switch (status) {
                         case 1: strHtml += "<td style='color:blue;'><b>Mới</b></td>";
                             strHtml += "<td><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModalXepPhong\" onclick=\"QuanLyKyThi.initXepPhong(" + item.KiThiID + ");\">Phòng thi</button></td>";
@@ -479,6 +485,7 @@
                 strHtml += "<td colspan='9' style='text-align:right;'><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"QuanLyKyThi.add();\">Thêm mới</button></td>";
                 strHtml += "</tr>";
                 $('#tbContent').html(strHtml);
+                Timer.start();
             });
         },
         add: function () {
@@ -675,7 +682,6 @@
         TheoDoiKiThi_searchDanhSachThiSinh: function () {
             //Load danh sach thi sinh du thi
             const searchText = $(`#txtSearchKiThiThiSinh`).val();
-            console.log('sss: ', searchText, $(`#txtSearchKiThiThiSinh`).val());
             $.getJSON(this.url + "ad_tcc_getnguoithitrongkithi.ashx?Type=2&&ID=" + QuanLyKyThi.ID + "&&search=" + searchText +"&&DanhMuc=-1&&", function (data) {
                 var strHtml = "";
                 var count = 1;
@@ -784,6 +790,45 @@
                 });
             }
         }
+    };
+    var Timer = {
+        data: [],
+        counter: 0,
+        push: function (minuteId = '', secondId = '', totalTime = 0) {
+            this.data.push({ minuteId, secondId, totalTime: totalTime + 1 });
+        },
+        updateTime: function (data) {
+            const newData = [];
+            this.counter++;
+            console.log('counter: ', this.counter);
+            console.log('update-time-data: ', JSON.parse(JSON.stringify(data)));
+
+            data.forEach((item, index) => {
+                item.totalTime -= 1;
+                if (item.totalTime > -1) {
+                    const minutes = Math.floor(item.totalTime / 60);
+                    const seconds = Math.floor(item.totalTime - (minutes * 60));
+                    $(`#${item.minuteId}`).html(minutes);
+                    $(`#${item.secondId}`).html(seconds);
+
+                    newData.push({
+                        minuteId: item.minuteId,
+                        secondId: item.secondId,
+                        totalTime: item.totalTime,
+                    });
+                }
+            });
+            if (newData.length > 0) {
+                console.log('continue');
+                setTimeout(() => {
+                    console.log('ctimeout');
+                    Timer.updateTime(newData);
+                }, 1000);
+            }
+        },
+        start: function () {
+            this.updateTime(this.data);
+        },
     };
     var XuLyPhongCa = {
         data: [],
@@ -926,34 +971,39 @@
         });
     });
 </script>
-<%--<script src="/Scripts/jquery-1.6.4.min.js"></script>--%>
 <script src="/Scripts/jquery.signalR-2.4.1.min.js"></script>
-<script src="http://localhost:8020/signalr/hubs"></script>
 <script type="text/javascript">
     $(function () {
-        
-        let examHub = $.connection.logHub;
-        $.connection.hub.url = 'http://localhost:8020/signalr/hubs';
+        const hubUrl = _config.Url.ThiHub;
 
-        examHub.client.broadcastMessage = function (name, message) {
-            console.log('broadcast msg: ', name, message);
-            if (name === 'LamBaiThi' && message === '1') {
-                QuanLyKyThi.TheoDoiKiThi_searchDanhSachThiSinh();
-            }
-        };
+        const el = document.createElement('script');
+        el.setAttribute('src', hubUrl);
+        $('body')[0].appendChild(el);
+        setTimeout(() => {
+            let examHub = $.connection.logHub;
+            $.connection.hub.url = hubUrl;
 
-        $.connection.hub.disconnected(function () {
-            setTimeout(function () {
-                $.connection.hub.start();
-            }, 5000); // Restart connection after 5 seconds.you can set the time based your requirement
-        });
 
-        $.connection.hub.start()
-            .done(function () {
-                console.log("Connected!");
-            })
-            .fail(function () {
-                console.log("Could not connect!");
+            examHub.client.broadcastMessage = function (name, message) {
+                console.log('broadcast msg: ', name, message);
+                if (name === 'LamBaiThi' && message === '1') {
+                    QuanLyKyThi.TheoDoiKiThi_searchDanhSachThiSinh();
+                }
+            };
+
+            $.connection.hub.disconnected(function () {
+                setTimeout(function () {
+                    $.connection.hub.start();
+                }, 5000); // Restart connection after 5 seconds.you can set the time based your requirement
             });
+
+            $.connection.hub.start()
+                .done(function () {
+                    console.log("Connected!");
+                })
+                .fail(function () {
+                    console.log("Could not connect!");
+                });
+        }, 1);
     });
 </script>

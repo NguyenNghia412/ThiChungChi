@@ -113,6 +113,10 @@
                                               default: break;
                                           }
                                       }
+                                      else if (item.LoaiDe === 2) {
+                                          strHtml += "<td style='color:blue;'>Kì thi đã kết thúc</td>";
+                                          strHtml += "<td></td>";
+                                      }
                                       else {
                                           strHtml += "<td style='color:blue;'>Kì thi đã kết thúc</td>";
                                           strHtml += "<td><button type=\"button\" onclick=\"DanhSachKiThi.chitietbaithi(" + item.KiThi_LopHoc_SinhVien + ");\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#myModal1\";\">Chi tiết</button></td>";
